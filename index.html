@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content=" Blog Archives Recent Posts ">
+  <meta name="description" content="GQRX Client: Gqrx 2.2 &ndash; [http://gqrx.dk/download] GQRX Server: Software: Get: libusb-1.0.0-dev git clone git://git.osmocom.org/rtl-sdr.git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,85 @@
       <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/20/outline-gqrx-over-tcp/">Outline - GQRX Over TCP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-20T18:27:00-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>GQRX Client:
+  Gqrx 2.2 &ndash; [<a href="http://gqrx.dk/download">http://gqrx.dk/download</a>]</p>
+
+<p>GQRX Server:
+  Software:</p>
+
+<pre><code>Get:
+  libusb-1.0.0-dev
+  git clone git://git.osmocom.org/rtl-sdr.git
+  cmake
+ Do:
+  cd rtl-sdr/
+  mkdir build
+  cd build
+  cmake ../ -DINSTALL_UDEV_RULES=ON # On to allow privlages for non-root users
+  make
+  sudo make install
+  sudo ldconfig
+ Use:
+   rtl_tcp -a 0.0.0.0
+</code></pre>
+
+<p>  Linux:</p>
+
+<pre><code>  Raspbian Wheezy, Build July 26th, 2013. - http://downloads.raspberrypi.org/images/raspbian/2013-07-26-wheezy-raspbian/2013-07-26-wheezy-raspbian.zip
+SSH:
+    http://steve.dynedge.co.uk/2012/05/29/enabling-ssh-on-debian-raspberry-pi/
+More:
+</code></pre>
+
+<p>   Hardware &ndash; (RaspberryPi):</p>
+
+<pre><code>Network Connectivity - Test Thruput
+  Ethernet
+  Wifi
+    http://www.geothread.net/cookbook-configuring-wifi-on-raspberry-pi/
+SDR
+  NooElec TV28T v2 - RTL2832U &amp; R820T, E4000 Tuner [http://www.amazon.com/gp/product/B009U7WZCA/]
+</code></pre>
+
+<p>   Drivers:</p>
+
+<p>Antenna Design:
+  Colinnear</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
@@ -77,6 +156,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/20/outline-gqrx-over-tcp/">Outline - GQRX Over TCP</a>
+      </li>
     
   </ul>
 </section>
