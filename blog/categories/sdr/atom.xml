@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: SDR | My Octopress Blog]]></title>
+  <title><![CDATA[Category: SDR | Code / Technology / Entrepreneurship]]></title>
   <link href="http://pifst.github.io/blog/categories/sdr/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-08-20T21:32:04-04:00</updated>
+  <updated>2013-08-20T22:12:09-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Christopher Fields]]></name>
     
   </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+  <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
 
   
   <entry>
