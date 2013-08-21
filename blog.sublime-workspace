@@ -1,0 +1,484 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"formatted_input"
+			],
+			[
+				"unique",
+				"uniquecharacters"
+			],
+			[
+				"link",
+				"linkTo"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "source/_includes/head.html",
+			"settings":
+			{
+				"buffer_size": 2335,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_config.yml",
+			"settings":
+			{
+				"buffer_size": 2874,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/_includes/navigation.html",
+			"settings":
+			{
+				"buffer_size": 1215,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/index.html",
+			"settings":
+			{
+				"buffer_size": 266,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/_layouts/default.html",
+			"settings":
+			{
+				"buffer_size": 1324,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"selected_items":
+		[
+			[
+				"tasks",
+				"Tasks: New document"
+			],
+			[
+				"white",
+				"Highlight Whitespaces: Toggle"
+			],
+			[
+				"task",
+				"Tasks: New document"
+			],
+			[
+				"tas",
+				"Tasks: New document"
+			],
+			[
+				"whitespace",
+				"Highlight Whitespaces: Toggle"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Show Tags"
+			],
+			[
+				"package install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"high",
+				"Highlight Whitespaces: Toggle"
+			],
+			[
+				"highli",
+				"Highlight Whitespaces: Toggle"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 516.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": true,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Chris/Sites/octopress/source/stylesheets/screen.css",
+		"/Users/Chris/Sites/octopress/source/stylesheets/screen.bak.css",
+		"/Users/Chris/Sites/octopress/source/_includes/custom/navigation.html",
+		"/Users/Chris/Sites/octopress/source/_includes/custom/header.html",
+		"/Users/Chris/Sites/octopress/source/_includes/header.html",
+		"/Users/Chris/Sites/octopress/source/projects/index.html",
+		"/Users/Chris/Sites/octopress/source/_layouts/page.html",
+		"/Users/Chris/Sites/octopress/source/_layouts/pages.html",
+		"/Users/Chris/Sites/octopress/source/_layouts/post.html",
+		"/Users/Chris/Sites/octopress/source/_layouts/category_index.html",
+		"/Users/Chris/Sites/octopress/source/_includes/custom/widgets.html",
+		"/Users/Chris/Sites/octopress/_config.yml",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/app.rb",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/Procfile",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/solve.html",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/index.html",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/ranking.rb",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/index.erb",
+		"/Users/Chris/Documents/Athena_Health/web_word_challenge/time.rb",
+		"/Users/Chris/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/Chris/Downloads/ray.donovan.the.golem.(2013).eng.1cd.(5110441)/ray.donovan.the.golem.(5110441).nfo",
+		"/Users/Chris/Desktop/coding challenge.pdf",
+		"/Users/Chris/Desktop/instructions.pdf",
+		"/Users/Chris/Desktop/real output.rb",
+		"/Users/Chris/Desktop/athena.rb",
+		"/Users/Chris/Desktop/athena3.rb",
+		"/Users/Chris/Desktop/athena v2.rb",
+		"/Users/Chris/Desktop/old code",
+		"/Users/Chris/Desktop/athena2.rb",
+		"/Users/Chris/Desktop/opt.rb",
+		"/Users/Chris/Desktop/opt1.rb",
+		"/Users/Chris/Library/Application Support/Sublime Text 2/Packages/DashDoc/Default (OSX).sublime-keymap",
+		"/Users/Chris/Desktop/memory_usage.rb",
+		"/Users/Chris/Library/Application Support/Sublime Text 2/Packages/DashDoc/DashDoc.sublime-settings",
+		"/Users/Chris/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/Chris/Desktop/healthlink_500_error.html",
+		"/Users/Chris/Library/Application Support/Sublime Text 2/Packages/SublimeEmberNav/SublimeEmberNav.sublime-settings",
+		"/Users/Chris/RubymineProjects/apph/Gemfile",
+		"/Users/Chris/RubymineProjects/Crohns_Quant/hash.txt",
+		"/Users/Chris/RubymineProjects/Crohns_Quant/bozocrack.rb",
+		"/Users/Chris/RubymineProjects/Crohns_Quant/bz.rb",
+		"/Users/Chris/Documents/Code Base/BSS - DashBoard/templates/header.html",
+		"/Users/Chris/Documents/Code Base/BSS - DashBoard/templates/main.html",
+		"/Users/Chris/Documents/Code Base/BSS - DashBoard/app.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"title",
+			"learning",
+			"code",
+			"blue",
+			"hover",
+			"color",
+			"hover",
+			"title",
+			"title\n\n\n\ntitle",
+			"title",
+			"title ul",
+			"search",
+			"search\n\n\n\n",
+			"search",
+			"other",
+			"ul.other",
+			"ul.other li",
+			"ul.title li",
+			"title",
+			"subscription",
+			"main-navigation",
+			"other",
+			"main-navigation",
+			"sidebar",
+			"font",
+			"40px",
+			"ARGV[0]",
+			"require",
+			"jkljl",
+			"create sorted",
+			"input_a",
+			"formatted_array",
+			"formatted_string",
+			"print_outcomes_dictionary",
+			"the input",
+			"each character has",
+			"predict",
+			"hash_values_to_array",
+			"\"",
+			"character_combinations",
+			"dictionary",
+			"Perm_hash",
+			"hashvalues_to_array",
+			"uniquecharacters",
+			"dictionary1",
+			"dictionary",
+			"dictionary_array",
+			"char_count",
+			"input_array",
+			"formatted_input",
+			"input_array",
+			"flat_map",
+			"assert",
+			"Capable",
+			"resolution",
+			"audio"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"array_i",
+			"input_a",
+			"input_s",
+			"'",
+			"combo_dictionary",
+			"hash_values_to_array",
+			"dictionary",
+			"dictionary1",
+			"dictionary",
+			"formatted_array",
+			"formatted_string",
+			"word",
+			"input_array"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "source/_includes/head.html",
+					"settings":
+					{
+						"buffer_size": 2335,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1818,
+								1818
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "_config.yml",
+					"settings":
+					{
+						"buffer_size": 2874,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								718,
+								718
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "source/_includes/navigation.html",
+					"settings":
+					{
+						"buffer_size": 1215,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								574,
+								608
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "source/index.html",
+					"settings":
+					{
+						"buffer_size": 266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								48,
+								28
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "source/_layouts/default.html",
+					"settings":
+					{
+						"buffer_size": 1324,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								678,
+								678
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 187.0,
+	"status_bar_visible": true
+}

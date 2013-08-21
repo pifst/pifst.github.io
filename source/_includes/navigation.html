@@ -2,25 +2,23 @@
   <li><a href="/">Chris Fields</a></li>
 </ul>
 
-<ul class="main-navigation">
-  <li class="other"><i class="icon-lightbulb icon-large icon-style"></i> <a href="/">Blog</a></li>
+<ul class="main-navigation icons-ul">
 
-  <li class="other"><i class="icon-beaker icon-large icon-style"></i> <a href="{{ root_url }}/projects">Projects</a></li>
+  <li class="other"><i class="icon-lightbulb icon-large icon-style icon-li"></i> <a href="/">Blog</a></li>
 
-  <li class="other"><i class="icon-github icon-large icon-style"></i> <a target="_blank" href="https://github.com/pifst" target="_blank">GitHub</a></li>
+  <li class="other"><i class="icon-beaker icon-large icon-style icon-li"></i> <a href="{{ root_url }}/projects">Projects</a></li>
 
-  <li class="other"><i class="icon-file-text-alt icon-large icon-style"></i> <a target="_blank" href="www.linkedin.com/in/csffsc/">Resume</a></li>
+  <li class="other"><i class="icon-github icon-large icon-style icon-li"></i> <a target="_blank" href="https://github.com/pifst" target="_blank">GitHub</a></li>
 
+  <li class="other"><i class="icon-file-text-alt icon-large icon-style icon-li"></i> <a target="_blank" href="http://www.linkedin.com/in/csffsc/">Resume</a></li>
 
+  <li class="other"><i class="icon-rocket icon-large icon-style icon-li"></i> <a href="mailto:chris@csfields.com">Contact</a></li>
 </ul>
-
-
-
 
 {% if site.simple_search %}
 
 <ul class="subscription" data-subscription="rss">
-  <li class="other"><i class="icon-rocket icon-large icon-style"></i> <a href="mailto:chris@csfields.com">Contact</a></li>
+
 
 <section id="code">
 <form action="{{ site.simple_search }}" method="get">
@@ -29,9 +27,9 @@
     <input class="search" type="text" name="q" style="width:150px" results="0" placeholder="Search"/>
   </fieldset>
 </form>
+
 </ul>
 </section>
   {% endif %}
 {% include custom/navigation.html %}
-
 
