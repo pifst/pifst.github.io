@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GQRX | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/gqrx/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-08-26T22:14:36-04:00</updated>
+  <updated>2013-08-26T22:21:51-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -20,7 +20,9 @@
     <id>http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip</id>
     <content type="html"><![CDATA[<p>Assuming you are on ethernet (or fast Wifi N), audio quality should be great.  There will a slight delay in changing to frequencies, and a large (2 to 5 second) delay in changing the monitored frequency window.  These delays are reduced upon reducing the sample (step 4).</p>
 
-<p>To confirm proper setup, device stability etc, run the following code over SSH:</p>
+<h2>Confirm Installation:</h2>
+
+<p>To confirm a proper setup and device stability etc, run the following code over SSH:</p>
 
 <pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rtl_test -t</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -55,12 +57,16 @@
 </span><span class='line'>E4K L-band gap: 1114 to 1241 MHz</span></code></pre></td></tr></table></div></figure></notextile></div>
 </code></pre>
 
+<h2>Server IP:</h2>
+
 <p>Obtain devices IP address, either thru;
   <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Obtain IP address of RPI </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>ipconfig # for wired lan
 </span><span class='line'>iwconfig # for wireless lan</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Enable Server:</h2>
 
 <p>Now over ssh put the device into listening mode, you can tell the program to only accept connections from a specific ip, or any.</p>
 
@@ -71,6 +77,8 @@
 <p>  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>RTL_TCP &ndash; Open to specific clients</span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 192.168.X.X</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Configure Client:</h2>
 
 <p>Open Gqrx, goto the Configure I/O Devices prompt.
   <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gqrx &ndash; Configure I/O Devices </span></figcaption>
@@ -91,9 +99,10 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<h2>End Result:</h2>
+
 <p>Hit the power button, enjoy:
-<img src="/images/Gqrx_rtl_tcp.jpg" />
-<img src="../images/Gqrx_rtl_tcp.jpg" title="&lsquo;Gqrx Screen Shot&rsquo; &lsquo;ABC&rsquo;" ></p>
+<a href="/images/Gqrx_rtl_tcp.jpg"><img src="/images/Gqrx_rtl_tcp.jpg" /> <a/></p>
 
 <hr />
 
