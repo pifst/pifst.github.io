@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Christopher Fields">
+  <meta name="description" content="Learn / Code / Share">
+
+  
+    <title>Using a Raspberry PI for SDR over TCP/IP - Christopher Fields</title>
+  
+
+
+  
+  <meta name="description" content="Assuming you are on ethernet (or fast Wifi N), audio quality should be great. There will a slight delay in changing to frequencies, and a large (2 to &hellip;">
+  
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip">
+  <link href="/favicon.ico" rel="icon">
+  <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Learn / Code / Share" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43354408-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+
+<body   >
+
+	<div class="container">
+
+		<div class="four columns">
+  			<nav role="navigation"><ul class="title">
+  <li><a href="/">Chris Fields</a></li>
+</ul>
+
+<ul class="main-navigation icons-ul">
+
+  <li class="other"><i class="icon-lightbulb icon-large icon-style icon-li"></i> <a href="/">Blog</a></li>
+
+  <li class="other"><i class="icon-beaker icon-large icon-style icon-li"></i> <a href="/projects">Projects</a></li>
+
+  <li class="other"><i class="icon-github icon-large icon-style icon-li"></i> <a target="_blank" href="https://github.com/pifst" target="_blank">GitHub</a></li>
+
+  <li class="other"><i class="icon-file-text-alt icon-large icon-style icon-li"></i> <a target="_blank" href="http://www.linkedin.com/in/csffsc/">Resume</a></li>
+
+  <li class="other"><i class="icon-rocket icon-large icon-style icon-li"></i> <a href="mailto:chris@csfields.com">Contact</a></li>
+</ul>
+
+
+
+<ul class="subscription" data-subscription="rss">
+
+<section id="code">
+
+<form action="http://google.com/search" method="get">
+  <div class="input-prepend">
+   <fieldset role="search">
+
+      <input type="hidden" name="q" value="site:pifst.github.io" />
+      <input class="search" type="text" name="q" style="width:100px" results="0" placeholder="Search"/>
+    </fieldset>
+  </div>
+</form>
+
+</ul>
+</section>
+  
+
+
+</nav>
+        <aside class="sidebar">
+          
+            <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/">Using a Raspberry PI for SDR over TCP/IP</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/20/outline-gqrx-over-tcp/">Outline - GQRX over TCP</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/06/01/this-is-a-test/">This is post</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+          
+
+
+
+
+
+        </aside>
+  	</div>
+
+    
+
+  	<div id="main" class="twelve columns">
+	    <div id="content">
+	      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using a Raspberry PI for SDR Over TCP/IP</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" data-via="" data-counturl="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+
+
+<div class="entry-content"><p>Assuming you are on ethernet (or fast Wifi N), audio quality should be great.  There will a slight delay in changing to frequencies, and a large (2 to 5 second) delay in changing the monitored frequency window.  These delays are reduced upon reducing the sample (step 4).</p>
+
+<p>To confirm proper setup, device stability etc, run the following code over SSH:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_test -t</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  Resulting in an output similar to:</p>
+
+<figure class='code'><figcaption><span>Output of RTL_Test </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Found 1 device(s):
+</span><span class='line'>      0:  ezcap USB 2.0 DVB-T/DAB/FM dongle
+</span><span class='line'>    Using device 0: ezcap USB 2.0 DVB-T/DAB/FM dongle
+</span><span class='line'>    Found Elonics E4000 tuner
+</span><span class='line'>    Supported gain values (18): -1.0 1.5 4.0 6.5 9.0 11.5 14.0 16.5 19.0 21.5 24.0 29.0 34.0 42.0 43.0 45.0 47.0 49.0
+</span><span class='line'>    Benchmarking E4000 PLL...
+</span><span class='line'>    [E4K] PLL not locked for 51000000 Hz!
+</span><span class='line'>    [E4K] PLL not locked for 2227000000 Hz!
+</span><span class='line'>    [E4K] PLL not locked for 1114000000 Hz!
+</span><span class='line'>    [E4K] PLL not locked for 1241000000 Hz!
+</span><span class='line'>    E4K range: 52 to 2226 MHz
+</span><span class='line'>    E4K L-band gap: 1114 to 1241 MHz</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Obtain devices IP address, either thru;</p>
+
+<figure class='code'><figcaption><span>Obtain IP address of RPI </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipconfig # for wired lan
+</span><span class='line'>iwconfig # for wireless lan</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now over ssh put the device into listening mode, you can tell the program to only accept connections from a specific ip, or any.</p>
+
+<figure class='code'><figcaption><span>RTL_TCP - Open to all clients</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 0.0.0.0</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>RTL_TCP - Open to specific clients</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 192.168.X.X</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Open Gqrx, goto the Configure I/O Devices prompt.</p>
+
+<figure class='code'><figcaption><span>Gqrx - Configure I/O Devices </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Device: RTL-SDR Spectrum Server
+</span><span class='line'>Device String: tcp=192.168.1.X:1234  # IP of RPI
+</span><span class='line'>Sample Rate: 1,500,000hz # Default
+</span><span class='line'>                         # Ideal is between 375,000 to 500,000</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hit the power button, enjoy:</p>
+
+<p><img class="center" src="/images/gqrx_rtl_tcp.jpg" title="Gqrx Screen Shot" alt="ABC"></p>
+
+<hr />
+
+<p>Notes:</p>
+
+<ol>
+<li>SDR instability, is likely due to plugging directly into the raspberry pi.  Instead use a POWERED usb hub.</li>
+</ol>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/20/outline-gqrx-over-tcp/" title="Previous Post: Outline - GQRX over TCP">&laquo; Previous post</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+	    </div>
+  	</div>
+
+  <footer role="contentinfo"  class="sixteen columns"><center>
+<p class="credit">
+  <span class="credit">Powered by <a href="http://github.com">GitHub</a>, <a href="https://github.com/imathis/octopress">Octopress</a>, &amp; <a href="https://github.com/dhgamache/Skeleton">Skeleton</a></span>.
+</p>
+</center>
+</footer>
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+  jQuery.noConflict()('li.other').hover (
+    function () {
+    jQuery.noConflict()(this).toggleClass("current-menu-item")
+  });
+</script>
+
+</body>
+</html>
+
+
+	</div> <!-- container -->

@@ -9,15 +9,21 @@
         <lastmod>2013-08-21T00:13:33-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/
+        </loc>
+        <lastmod>2013-08-26T20:38:10-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://pifst.github.io/blog/archives/</loc>
-        <lastmod>2013-08-20T22:12:00-04:00</lastmod>
+        <lastmod>2013-08-26T20:38:10-04:00</lastmod>
     </url>
     <url>
         <loc>http://pifst.github.io/</loc>
-        <lastmod>2013-08-21T00:24:42-04:00</lastmod>
+        <lastmod>2013-08-26T20:38:10-04:00</lastmod>
     </url>
     <url>
         <loc>http://pifst.github.io/projects/</loc>
-        <lastmod>2013-08-20T22:12:00-04:00</lastmod>
+        <lastmod>2013-08-26T20:38:10-04:00</lastmod>
     </url>
 </urlset>
