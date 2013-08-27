@@ -157,6 +157,16 @@
     <img src="/images/rpi_hub_sdr.jpg" />
   </div>
 
+    <div class="project">
+    <h3>Experimental Data Collection & Analysis</h3>
+      <p>The intention is to create a device capable of recording it&#8217;s surroundings over the duration of a 2-3 day time frame. Ideally the GPS will be able to periodically lock onto signal, although it remains to be seen if the logistics of power consumption & signal strength without line of sight to sky is feasible.<p> Additionally there will be an ADXL345 accelerometer, which is capable of identifying +/- 16g, single/double tap, slope, free fall, in the absence of movement, a sleep signal. There is a single wire digital temperature sensor, which provides output over a single GPIO pin. <p>There will be a usb WiFI adapter operating via Realtek RTL8188CUS drivers supplied in debian. This will upon instruction or preset time interval, run &#8216;iwlist wlan0 scan&#8217;, recording the timestamped results of nearby wireless networks. <p>Finally there is the power source, a battery roughly the size of a paperback book. Upon rough calculations, there should be capacity for between 28 and 66 hours. Sleeping the RPI, and components should extend the time past 66 hours, I believe the ADXL345 which is able to provide a sleepmode signal will be instrumental in this. Additionally disabling hdmi, sound, and ethernet should aid in further power reduction.<span class="project-date">(2013)</span></p>
+
+
+    <img src="/images/rpi_motion_gps_accell.jpg" />
+  </div>
+
+
+
 </article>
 
 </div>
