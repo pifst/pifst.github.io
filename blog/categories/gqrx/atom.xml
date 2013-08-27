@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GQRX | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/gqrx/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-08-26T20:44:22-04:00</updated>
+  <updated>2013-08-26T20:50:29-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -14,7 +14,100 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Outline - GQRX over TCP]]></title>
+    <title type="html"><![CDATA[Using a Raspberry PI for SDR over TCP/IP]]></title>
+    <link href="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/"/>
+    <updated>2013-08-26T18:11:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip</id>
+    <content type="html"><![CDATA[<p>Assuming you are on ethernet (or fast Wifi N), audio quality should be great.  There will a slight delay in changing to frequencies, and a large (2 to 5 second) delay in changing the monitored frequency window.  These delays are reduced upon reducing the sample (step 4).</p>
+
+<p>To confirm proper setup, device stability etc, run the following code over SSH:</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_test -t</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<p>  Resulting in an output similar to:</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Output of RTL_Test </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Found 1 device(s):
+</span><span class='line'>  0:  ezcap USB 2.0 DVB-T/DAB/FM dongle
+</span><span class='line'>Using device 0: ezcap USB 2.0 DVB-T/DAB/FM dongle
+</span><span class='line'>Found Elonics E4000 tuner
+</span><span class='line'>Supported gain values (18): -1.0 1.5 4.0 6.5 9.0 11.5 14.0 16.5 19.0 21.5 24.0 29.0 34.0 42.0 43.0 45.0 47.0 49.0
+</span><span class='line'>Benchmarking E4000 PLL...
+</span><span class='line'>[E4K] PLL not locked for 51000000 Hz!
+</span><span class='line'>[E4K] PLL not locked for 2227000000 Hz!
+</span><span class='line'>[E4K] PLL not locked for 1114000000 Hz!
+</span><span class='line'>[E4K] PLL not locked for 1241000000 Hz!
+</span><span class='line'>E4K range: 52 to 2226 MHz
+</span><span class='line'>E4K L-band gap: 1114 to 1241 MHz</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<p>Obtain devices IP address, either thru;
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Obtain IP address of RPI </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ipconfig # for wired lan
+</span><span class='line'>iwconfig # for wireless lan</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now over ssh put the device into listening mode, you can tell the program to only accept connections from a specific ip, or any.</p>
+
+<p>  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>RTL_TCP &ndash; Open to all clients</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 0.0.0.0</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>RTL_TCP &ndash; Open to specific clients</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 192.168.X.X</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Open Gqrx, goto the Configure I/O Devices prompt.
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gqrx &ndash; Configure I/O Devices </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Device: RTL-SDR Spectrum Server
+</span><span class='line'>Device String: tcp=192.168.1.X:1234  # IP of RPI
+</span><span class='line'>Sample Rate: 1,500,000hz # Default&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>                     # Ideal is between 375,000 to 500,000
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Hit the power button, enjoy:</p>
+
+<p><img class="center <a" src="href="http://www.csfields.com/images/Gqrx_rtl_tcp.jpg">http://www.csfields.com/images/Gqrx_rtl_tcp.jpg</a>" title="&lsquo;Gqrx Screen Shot&rsquo; &lsquo;ABC&rsquo;" ></p>
+
+<hr />
+
+<p>Notes:</p>
+
+<ol>
+<li>SDR instability, is likely due to plugging directly into the raspberry pi.  Instead use a POWERED usb hub.</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install process outline, GQRX over TCP/IP]]></title>
     <link href="http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp/"/>
     <updated>2013-08-20T18:27:00-04:00</updated>
     <id>http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp</id>
