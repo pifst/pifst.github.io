@@ -9,12 +9,12 @@
   <meta name="description" content="Learn / Code / Share">
 
   
-    <title>Learn / Code / Share - Christopher Fields</title>
+    <title>Mosh: SSH for the 21st Century - Christopher Fields</title>
   
 
 
   
-  <meta name="description" content="A blog about culture, technology, and interesting things.">
+  <meta name="description" content="Remote terminal application that allows roaming, supports intermittent connectivity, and provides intelligent local echo and line editing of user &hellip;">
   
 
 
@@ -25,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pifst.github.io">
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/08/26/mosh">
   <link href="/favicon.ico" rel="icon">
   <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -137,54 +137,81 @@
 
     
 
-    <header class="twelve columns" role="banner">
-    
-<hgroup>
-  <h1>Learn / Code / Share</h1>
-</hgroup>
-
-    </header>
-
-    
-
   	<div id="main" class="twelve columns">
 	    <div id="content">
-	      <div id="blog-archives">
-
-
-<article>
+	      <div>
+<article class="hentry" role="article">
   
+  <header>
+    
+      <h1 class="entry-title">Mosh: SSH for the 21st Century</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
 
 
-  <time datetime="2013-08-26T20:59:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-&nbsp;
-  <h1><a href="/blog/2013/08/26/mosh/">Mosh: SSH for the 21st Century</a></h1>
-
-
-</article>
-
-
-<article>
+    
+      <div class="sharing">
   
-
-
-  <time datetime="2013-08-26T18:11:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-&nbsp;
-  <h1><a href="/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/">Using a Raspberry PI for SDR over TCP/IP</a></h1>
-
-
-</article>
-
-
-<article>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/08/26/mosh/" data-via="" data-counturl="http://pifst.github.io/blog/2013/08/26/mosh/" >Tweet</a>
   
+  
+  
+</div>
+
+    
 
 
-  <time datetime="2013-08-20T18:27:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>20</span> <span class='year'>2013</span></time>
-&nbsp;
-  <h1><a href="/blog/2013/08/20/outline-gqrx-over-tcp/">Install process outline, GQRX over TCP/IP</a></h1>
+<div class="entry-content"><p>Remote terminal application that allows roaming, supports intermittent connectivity, and provides intelligent local echo and line editing of user keystrokes.</p>
+
+<p>Mosh is a replacement for SSH. It&rsquo;s more robust and responsive, especially over Wi-Fi, cellular, and long-distance links.</p>
+
+<p>Mosh is free software, available for GNU/Linux, FreeBSD, Solaris, Mac OS X, and Android.</p>
+
+<p>Mosh is an SSH replacement, that works over UDP.  For power users, Mosh brings several advantages to the table against the incumbent SSH.</p>
+
+<h2>The Basics</h2>
+
+<ol>
+<li><p>Persistent sessions.  If the connection you are using drops, Mosh will save the history &amp; state of the shell for you.  When you reconnect it will all be there.  It does not matter if you change connections from a lan to a tethered 3g, or even change computers.</p></li>
+<li><p>Latency free typing.  With SSH, over high latency connections most users can type faster than the prompt.  This is because an SSH shell will not show a character until the client has received confirmation from the server.  In extreme latency cases this means dropped characters.  With Mosh, the experience is the same as typing in your own shell.  If the connection has high latency, Mosh will temporarily prevent the command from being executed until the typed line is confirmed.</p></li>
+<li><p>Process Halting.  With Mosh you can always hit Control-C to halt a runaway process, when SSH would be too busy looping over the runaway process.</p></li>
+<li><p>Open source &amp; supported on Linux, OSX &amp; Android</p></li>
+</ol>
 
 
+<h2>Installation</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosh</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Usage</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mosh 192.168.1.1 # Basic connection
+</span><span class='line'>$ mosh user@192.168.1.1 # Connecting w/user
+</span><span class='line'>$ mosh user@host-name # including Avahi (favorite for RPI access over lan)</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" title="Previous Post: Using a Raspberry PI for SDR over TCP/IP">&laquo; Previous post</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

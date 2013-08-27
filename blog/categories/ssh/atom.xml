@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SSH | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/ssh/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-08-26T22:13:18-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mosh: SSH for the 21st Century]]></title>
+    <link href="http://pifst.github.io/blog/2013/08/26/mosh/"/>
+    <updated>2013-08-26T20:59:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/08/26/mosh</id>
+    <content type="html"><![CDATA[<p>Remote terminal application that allows roaming, supports intermittent connectivity, and provides intelligent local echo and line editing of user keystrokes.</p>
+
+<p>Mosh is a replacement for SSH. It&rsquo;s more robust and responsive, especially over Wi-Fi, cellular, and long-distance links.</p>
+
+<p>Mosh is free software, available for GNU/Linux, FreeBSD, Solaris, Mac OS X, and Android.</p>
+
+<p>Mosh is an SSH replacement, that works over UDP.  For power users, Mosh brings several advantages to the table against the incumbent SSH.</p>
+
+<h2>The Basics</h2>
+
+<ol>
+<li><p>Persistent sessions.  If the connection you are using drops, Mosh will save the history &amp; state of the shell for you.  When you reconnect it will all be there.  It does not matter if you change connections from a lan to a tethered 3g, or even change computers.</p></li>
+<li><p>Latency free typing.  With SSH, over high latency connections most users can type faster than the prompt.  This is because an SSH shell will not show a character until the client has received confirmation from the server.  In extreme latency cases this means dropped characters.  With Mosh, the experience is the same as typing in your own shell.  If the connection has high latency, Mosh will temporarily prevent the command from being executed until the typed line is confirmed.</p></li>
+<li><p>Process Halting.  With Mosh you can always hit Control-C to halt a runaway process, when SSH would be too busy looping over the runaway process.</p></li>
+<li><p>Open source &amp; supported on Linux, OSX &amp; Android</p></li>
+</ol>
+
+
+<h2>Installation</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosh</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Usage</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mosh 192.168.1.1 # Basic connection
+</span><span class='line'>$ mosh &lt;a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#117;&#115;&#x65;&#x72;&#64;&#49;&#57;&#50;&#46;&#x31;&#x36;&#x38;&#46;&#x31;&#x2e;&#49;">&#117;&#x73;&#101;&#x72;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#54;&#x38;&#46;&#49;&#46;&#49;&lt;/a> # Connecting w/user
+</span><span class='line'>$ mosh user@host-name # including Avahi (favorite for RPI access over lan)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
