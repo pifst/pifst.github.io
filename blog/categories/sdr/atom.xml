@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SDR | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/sdr/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-08-26T23:21:17-04:00</updated>
+  <updated>2013-08-27T00:17:02-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -116,54 +116,80 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Install process outline, GQRX over TCP/IP]]></title>
+    <title type="html"><![CDATA[RTL-SDR Server Setup]]></title>
     <link href="http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp/"/>
     <updated>2013-08-20T18:27:00-04:00</updated>
     <id>http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp</id>
-    <content type="html"><![CDATA[<p>GQRX Client:
-  Gqrx 2.2 &ndash; [<a href="http://gqrx.dk/download">http://gqrx.dk/download</a>]</p>
+    <content type="html"><![CDATA[<h2>RTL-SDR Server</h2>
 
-<p>GQRX Server:
-  Software:</p>
+<p>  Software (debian):<br>
+  Raspbian Wheezy, Build July 26th, 2013. &ndash; <a href="http://downloads.raspberrypi.org/images/raspbian/2013-07-26-wheezy-raspbian/2013-07-26-wheezy-raspbian.zip" target="_blank">(source)</a></p>
 
-<pre><code>Get:
-  libusb-1.0.0-dev
-  git clone git://git.osmocom.org/rtl-sdr.git
-  cmake
- Do:
-  cd rtl-sdr/
-  mkdir build
-  cd build
-  cmake ../ -DINSTALL_UDEV_RULES=ON # On to allow privlages for non-root users
-  make
-  sudo make install
-  sudo ldconfig
- Use:
-   rtl_tcp -a 0.0.0.0
-</code></pre>
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Get </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>apt-get install libusb-1.0.0-dev
+</span><span class='line'>git clone git://git.osmocom.org/rtl-sdr.git
+</span><span class='line'>apt-get install cmake&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code></span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>  Linux:</p>
+     <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Do </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>cd rtl-sdr/
+</span><span class='line'>mkdir build
+</span><span class='line'>cd build
+</span><span class='line'>cmake ../ -DINSTALL_UDEV_RULES=ON # On to allow privlages for non-root users
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>sudo ldconfig</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<pre><code>  Raspbian Wheezy, Build July 26th, 2013. - http://downloads.raspberrypi.org/images/raspbian/2013-07-26-wheezy-raspbian/2013-07-26-wheezy-raspbian.zip
-SSH:
-    http://steve.dynedge.co.uk/2012/05/29/enabling-ssh-on-debian-raspberry-pi/
-More:
-</code></pre>
+<h2>Radio &amp; Antenna</h2>
 
-<p>   Hardware &ndash; (RaspberryPi):</p>
+<ol>
+<li> Dual band 2M / 70CM slim jim ladder with 16' of rg-58 extension <a href="http://www.2wayelectronix.com/Dual-band-2m-70cm-Slim-Jim-Antenna-with-16-rg-58-dual-slim-16.htm" target="_blank">(purchase)</a>.<br>
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Specifications </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Length - 6 Feet tip to connector.
+</span><span class='line'>  1.5:1 Bandwidth > 4mhz
+</span><span class='line'>  Power Handling - 100 watts
+</span><span class='line'>  Gain - Approx 6dbi 2m 5dbi 70cm
+</span><span class='line'>  Weight - 6oz
+</span><span class='line'>  Connector - Assorted
+</span><span class='line'>  Construction - 450 ohm ladder line.</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>Network Connectivity - Test Thruput
-  Ethernet
-  Wifi
-    http://www.geothread.net/cookbook-configuring-wifi-on-raspberry-pi/
-SDR
-  NooElec TV28T v2 - RTL2832U &amp; R820T, E4000 Tuner [http://www.amazon.com/gp/product/B009U7WZCA/]
-</code></pre>
+<li> 6inch RG316 MCX male right angel to SMA female jack RF Pigtail <a href="http://www.ebay.com/itm/6inch-RG316-MCX-male-right-angel-to-SMA-female-jack-RF-Pigtail-Jumper-Cable-15cm-/170993798886" target="_blank">(purchase)</a>.<br>
 
-<p>   Drivers:</p>
+<li> RTL2832U S.D.R. w/ E4000 Tuner <a href="http://www.amazon.com/gp/product/B009U7WZCA/ref=oh_details_o00_s00_i00?ie=UTF8&psc=1" target="_blank">(purchase)</a>.<br>
+  E4000 currently considered the best tuner, with minor draw backs.  This product uses an MCX Female jack, which is a relatively uncommon standard.  The provided antenna is useful for harvesting the MCX Male jack.
 
-<p>Antenna Design:
-  Colinnear</p>
+</ol>
+
+
+<p><a href="/images/sdr_mcx-smaF-smaM-70cm2m.png"><img src="/images/sdr_mcx-smaF-smaM-70cm2m.png" /> </a><br></p>
 ]]></content>
   </entry>
   
