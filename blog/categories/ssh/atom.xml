@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSH | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/ssh/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-08-27T00:20:36-04:00</updated>
+  <updated>2013-08-27T00:22:33-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -41,7 +41,7 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ mosh 192.168.1.1 # Basic connection
-</span><span class='line'>$ mosh &lt;a href="&#109;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#117;&#115;&#101;&#x72;&#64;&#x31;&#x39;&#50;&#46;&#x31;&#x36;&#56;&#46;&#x31;&#46;&#x31;">&#x75;&#115;&#101;&#114;&#x40;&#x31;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#49;&#46;&#49;&lt;/a> # Connecting w/user
+</span><span class='line'>$ mosh &lt;a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#117;&#115;&#101;&#114;&#64;&#49;&#57;&#50;&#46;&#49;&#x36;&#x38;&#x2e;&#49;&#x2e;&#49;">&#117;&#115;&#x65;&#x72;&#x40;&#49;&#57;&#50;&#46;&#49;&#x36;&#x38;&#x2e;&#x31;&#46;&#49;&lt;/a> # Connecting w/user
 </span><span class='line'>$ mosh user@host-name # including Avahi (favorite for RPI access over lan)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
