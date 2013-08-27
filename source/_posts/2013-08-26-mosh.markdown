@@ -1,0 +1,33 @@
+---
+layout: post
+title: "Mosh: SSH for the 21st Century"
+date: 2013-08-26 20:59
+comments: true
+categories: [Mosh, SSH]
+---
+
+<a href="http://mosh.mit.edu/">Mosh</a> is an SSH replacement, that works over UDP.  For power users, Mosh brings several advantages to the table against the incumbent SSH.
+The Basics
+--
+1. Persistent sessions.  If the connection you are using drops, Mosh will save the history & state of the shell for you.  When you reconnect it will all be there.  It does not matter if you change connections from a lan to a tethered 3g, or even change computers.
+
+2. With SSH, over high latency connections most users can type faster than the prompt.  This is because an SSH shell will not show a character until the client has received confirmation from the server.  In extreme latency cases this means dropped characters.  With Mosh, the experience is the same as typing in your own shell.  If the connection has high latency, Mosh will temporarily prevent the command from being executed until the typed line is confirmed.
+
+3. Process Halting.  With Mosh you can always hit Control-C to halt a runaway process, when SSH would be too busy looping over the runaway process.
+
+4. Open source [<a href="https://github.com/keithw/mosh"><i class="icon-github"></i> Github</a>], available on Linux, OSX, Android, and jailbroken iOS.
+
+
+Installation
+--
+{% codeblock %}
+sudo apt-get install mosh
+{% endcodeblock %}
+
+Usage
+--
+{% codeblock %}
+$ mosh 192.168.1.1 # Basic connection
+$ mosh user@192.168.1.1 # Connecting w/user
+$ mosh user@host-name # including Avahi (favorite for RPI access over lan)
+{% endcodeblock %}

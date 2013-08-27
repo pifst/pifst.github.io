@@ -19,13 +19,16 @@
 
 <ul class="subscription" data-subscription="rss">
 
-
 <section id="code">
+
 <form action="{{ site.simple_search }}" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:{{ site.url | shorthand_url }}" />
-    <input class="search" type="text" name="q" style="width:150px" results="0" placeholder="Search"/>
-  </fieldset>
+  <div class="input-prepend">
+   <fieldset role="search">
+
+      <input type="hidden" name="q" value="site:{{ site.url | shorthand_url }}" />
+      <input class="search" type="text" name="q" style="width:100px" results="0" placeholder="Search"/>
+    </fieldset>
+  </div>
 </form>
 
 </ul>

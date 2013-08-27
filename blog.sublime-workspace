@@ -31,7 +31,7 @@
 			"file": "_config.yml",
 			"settings":
 			{
-				"buffer_size": 2874,
+				"buffer_size": 2888,
 				"line_ending": "Unix"
 			}
 		},
@@ -39,7 +39,7 @@
 			"file": "source/_includes/navigation.html",
 			"settings":
 			{
-				"buffer_size": 1215,
+				"buffer_size": 1311,
 				"line_ending": "Unix"
 			}
 		},
@@ -56,6 +56,14 @@
 			"settings":
 			{
 				"buffer_size": 1324,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/_includes/custom/footer.html",
+			"settings":
+			{
+				"buffer_size": 253,
 				"line_ending": "Unix"
 			}
 		}
@@ -287,7 +295,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -321,15 +329,15 @@
 					"file": "_config.yml",
 					"settings":
 					{
-						"buffer_size": 2874,
+						"buffer_size": 2888,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								718,
-								718
+								2849,
+								2849
 							]
 						],
 						"settings":
@@ -337,7 +345,7 @@
 							"syntax": "Packages/YAML/YAML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 515.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -347,15 +355,15 @@
 					"file": "source/_includes/navigation.html",
 					"settings":
 					{
-						"buffer_size": 1215,
+						"buffer_size": 1311,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								574,
-								608
+								1020,
+								1020
 							]
 						],
 						"settings":
@@ -380,8 +388,8 @@
 						"selection":
 						[
 							[
-								48,
-								28
+								127,
+								127
 							]
 						],
 						"settings":
@@ -408,6 +416,32 @@
 							[
 								678,
 								678
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "source/_includes/custom/footer.html",
+					"settings":
+					{
+						"buffer_size": 253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								253,
+								253
 							]
 						],
 						"settings":
