@@ -6,10 +6,10 @@ comments: true
 categories: [Mosh, SSH]
 ---
 
-<a href="http://mosh.mit.edu/">Mosh</a> is an SSH replacement, that works over UDP.  For power users, Mosh brings several advantages to the table against the incumbent SSH.
+<a href="http://mosh.mit.edu/">Mosh</a> is an SSH replacement, providing persistent shell connectivity.  For power users, Mosh brings several advantages to the table against the incumbent SSH.
 The Basics
 --
-1. Persistent sessions.  If the connection you are using drops, Mosh will save the history & state of the shell for you.  When you reconnect it will all be there.  It does not matter if you change connections from a lan to a tethered 3g, or even change computers.
+1. Persistent sessions.  If the connection you are using drops, Mosh will save the history & state of the shell for you.  When you reconnect it will all be there.  So, changing WiFi access points, switching to lan, or to a 4g tethered connection, your session will pick up where you left off, automatically.
 
 2. With SSH, over high latency connections most users can type faster than the prompt.  This is because an SSH shell will not show a character until the client has received confirmation from the server.  In extreme latency cases this means dropped characters.  With Mosh, the experience is the same as typing in your own shell.  If the connection has high latency, Mosh will temporarily prevent the command from being executed until the typed line is confirmed.
 
@@ -20,9 +20,14 @@ The Basics
 
 Installation
 --
-{% codeblock %}
-sudo apt-get install mosh
+{% codeblock Linux %}
+apt-get install mosh
 {% endcodeblock %}
+
+{% codeblock OSX via HomeBrew %}
+brew install mobile-shell
+{% endcodeblock %}
+
 
 Usage
 --
@@ -31,3 +36,7 @@ $ mosh 192.168.1.1 # Basic connection
 $ mosh user@192.168.1.1 # Connecting w/user
 $ mosh user@host-name # including Avahi (favorite for RPI access over lan)
 {% endcodeblock %}
+
+Video
+--
+<iframe width="640" height="360" src="https://www.youtube.com/embed/XsIxNYl0oyU?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
