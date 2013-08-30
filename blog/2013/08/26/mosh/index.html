@@ -14,7 +14,7 @@
 
 
   
-  <meta name="description" content="Mosh is an SSH replacement, that works over UDP. For power users, Mosh brings several advantages to the table against the incumbent SSH. The Basics &hellip;">
+  <meta name="description" content="Mosh is an SSH replacement, providing persistent shell connectivity. For power users, Mosh brings several advantages to the table against the &hellip;">
   
 
 
@@ -170,12 +170,12 @@
     
 
 
-<div class="entry-content"><p><a href="http://mosh.mit.edu/">Mosh</a> is an SSH replacement, that works over UDP.  For power users, Mosh brings several advantages to the table against the incumbent SSH.</p>
+<div class="entry-content"><p><a href="http://mosh.mit.edu/">Mosh</a> is an SSH replacement, providing persistent shell connectivity.  For power users, Mosh brings several advantages to the table against the incumbent SSH.</p>
 
 <h2>The Basics</h2>
 
 <ol>
-<li><p>Persistent sessions.  If the connection you are using drops, Mosh will save the history &amp; state of the shell for you.  When you reconnect it will all be there.  It does not matter if you change connections from a lan to a tethered 3g, or even change computers.</p></li>
+<li><p>Persistent sessions.  If the connection you are using drops, Mosh will save the history &amp; state of the shell for you.  When you reconnect it will all be there.  So, changing WiFi access points, switching to lan, or to a 4g tethered connection, your session will pick up where you left off, automatically.</p></li>
 <li><p>With SSH, over high latency connections most users can type faster than the prompt.  This is because an SSH shell will not show a character until the client has received confirmation from the server.  In extreme latency cases this means dropped characters.  With Mosh, the experience is the same as typing in your own shell.  If the connection has high latency, Mosh will temporarily prevent the command from being executed until the typed line is confirmed.</p></li>
 <li><p>Process Halting.  With Mosh you can always hit Control-C to halt a runaway process, when SSH would be too busy looping over the runaway process.</p></li>
 <li><p>Open source [<a href="https://github.com/keithw/mosh"><i class="icon-github"></i> Github</a>], available on Linux, OSX, Android, and jailbroken iOS.</p></li>
@@ -184,8 +184,16 @@
 
 <h2>Installation</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosh</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>Linux </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mosh</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>OSX via HomeBrew </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install mobile-shell</span></code></pre></td></tr></table></div></figure>
 
 
 <h2>Usage</h2>
@@ -198,6 +206,9 @@
 </span><span class='line'>$ mosh user@host-name # including Avahi (favorite for RPI access over lan)</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>Video</h2>
+
+<iframe width="640" height="360" src="https://www.youtube.com/embed/XsIxNYl0oyU?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
 
 </div>
 
