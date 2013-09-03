@@ -9,12 +9,12 @@
   <meta name="description" content="Learn / Code / Share">
 
   
-    <title>Category: GQRX - Christopher Fields</title>
+    <title>Updating SSH Fingerprints - Christopher Fields</title>
   
 
 
   
-  <meta name="description" content="Category: GQRX">
+  <meta name="description" content="Background I recently needed to format &amp; reinstall a problem debian installation on my RPI. Since I kept the default hostname (the root password &hellip;">
   
 
 
@@ -25,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pifst.github.ioblog/categories/gqrx">
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key">
   <link href="/favicon.ico" rel="icon">
   <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -59,10 +59,10 @@
 
 <body   >
 
-  <div class="container">
+	<div class="container">
 
-    <div class="four columns">
-        <nav role="navigation"><ul class="title">
+		<div class="four columns">
+  			<nav role="navigation"><ul class="title">
   <li><a href="/">Chris Fields</a></li>
 </ul>
 
@@ -137,57 +137,109 @@
           
 
 
-        </aside>
-    </div>
 
-    <div id="main" class="twelve columns">
-      <div id="content">
-        <div>
-<article role="article">
+
+
+        </aside>
+  	</div>
+
+    
+
+  	<div id="main" class="twelve columns">
+	    <div id="content">
+	      <div>
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: gqrx</h1>
+    
+      <h1 class="entry-title">Updating SSH Fingerprints</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
   </header>
+
+
+    
+      <div class="sharing">
   
-  <div id="blog-archives" class="category">
-
-<article>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key/" data-via="" data-counturl="http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key/" >Tweet</a>
   
-
-
-  <time datetime="2013-08-26T18:11:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-&nbsp;
-  <h1><a href="/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/">Using a Raspberry PI for SDR over TCP/IP</a></h1>
-
-
-</article>
-
-<article>
   
+  
+</div>
+
+    
 
 
-  <time datetime="2013-08-20T18:27:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>20</span> <span class='year'>2013</span></time>
-&nbsp;
-  <h1><a href="/blog/2013/08/20/outline-gqrx-over-tcp/">RTL-SDR Server Setup</a></h1>
+<div class="entry-content"><h2>Background</h2>
+
+<p> I recently needed to format &amp; reinstall a problem debian installation on my RPI.  Since I kept the default hostname (the root password did change.. sorry guys), my router&rsquo;s DHCP server recognized the RPI&rsquo;s MAC &amp; hostname as the same, issuing the same IP address; business as usual.</p>
+
+<p> So upon connecting to the RPI&rsquo;s SSH daemon, I was presented with:</p>
+
+<figure class='code'><figcaption><span>Fingerprint Error </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh pi@192.168.11.49
+</span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+</span><span class='line'>  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+</span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+</span><span class='line'>  IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+</span><span class='line'>  Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+</span><span class='line'>  It is also possible that a host key has just been changed.
+</span><span class='line'>  The fingerprint for the RSA key sent by the remote host is
+</span><span class='line'>  7d:d2:85:c6:b9:0f:ae:1a:ff:0e:29:57:d6:92:09:22.
+</span><span class='line'>  Please contact your system administrator.
+</span><span class='line'>  Add correct host key in /Users/Chris/.ssh/known_hosts to get rid of this message.
+</span><span class='line'>  Offending RSA key in /Users/Chris/.ssh/known_hosts:25
+</span><span class='line'>  RSA host key for 192.168.11.49 has changed and you have requested strict checking.
+</span><span class='line'>  Host key verification failed.</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>Remove the outdated fingerprint</h2>
+
+<figure class='code'><figcaption><span>Automated Removal </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sed -i "25 d" ~/.known_hosts</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Where &lsquo;<strong>25</strong>&rsquo; is the outdated fingerprint&rsquo;s line number, listed in the output.</p>
+
+<p>And that&rsquo;s it, log back in, verify the fingerprint and accept.</p>
+
+<p>Next up, install <a href="/blog/2013/08/26/mosh/">Mosh</a>!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/03/going-to-stratarx-9-slash-26-and-9-slash-27/" title="Previous Post: Going to StrataRx!">&laquo; Previous post</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
 
-</article>
-
-</div>
-
-<script>
-  jQuery.noConflict()('li.other').hover (
-    function () {
-    jQuery.noConflict()(this).toggleClass("current-menu-item")
-  });
-</script>
-
-      </div>
-    </div>
+	    </div>
+  	</div>
 
   <footer role="contentinfo"  class="sixteen columns"><center>
 <p class="credit">
@@ -220,9 +272,9 @@
 
 
 <script>
-  $('li.other').hover (
+  jQuery.noConflict()('li.other').hover (
     function () {
-    $(this).toggleClass("current-menu-item")
+    jQuery.noConflict()(this).toggleClass("current-menu-item")
   });
 </script>
 
@@ -230,4 +282,4 @@
 </html>
 
 
-  </div> <!-- container -->
+	</div> <!-- container -->
