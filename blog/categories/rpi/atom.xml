@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RPI | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/rpi/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-09-03T19:45:34-04:00</updated>
+  <updated>2013-09-04T01:45:56-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -12,6 +12,132 @@
   </author>
   <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SSH over Bluetooth (2/3rds Complete)]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/03/ssh-over-bluetooth/"/>
+    <updated>2013-09-03T23:43:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/03/ssh-over-bluetooth</id>
+    <content type="html"><![CDATA[<h2>Background Information</h2>
+
+<p>In this situation, the intention is to create an SSH connection between an RPI (linux) system and an OSX system.  For this specific case I am using a Bluetooth 4.0 usb dongle found on <a href="http://www.amazon.com/Plugable-Bluetooth-Adapter-Windows-Compatible/dp/tech-data/B009ZIILLI/ref=de_a_smtd">Amazon</a> for $15.</p>
+
+<p>For OSX; goto System Settings &ndash; Bluetooth.  Make sure bluetooth is turned on, and that it is in discoverable mode.</p>
+
+<h2>Step 1; Method One: hcitool</h2>
+
+<p>Using hcitool, will force a bluetooth pair on the clients machine from the RPI.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Step One &ndash; Find client Bluetooth Address </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ hcitool scan
+</span><span class='line'>Scanning &hellip;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>5X:XX:XX:XX:XX:XA mbr
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>note: (address obscured)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Step Two &ndash; Force client pair Bluetooth Address </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ hcitool cc 5X:XX:XX:XX:XX:XA
+</span><span class='line'>$ hcitool auth 5X:XX:XX:XX:XX:XA
+</span><span class='line'>note: commands must be quickly executed, within less than 2 seconds.</span></code></pre></td></tr></table></div></figure></notextile></div>
+If the two commands are executed in quick succession, it will force a bluetooth pairing request on the client&rsquo;s computer.</p>
+
+<p><img src="/images/bluetooth_pair.png" />
+Checking the OSX client computer, accept the bluetooth pairing request.  The pairing code does not matter (it will not appear on the linux command line).  Just hit accept.</p>
+
+<p><img src="/images/bluetooth_paired.png" />
+After accepting the pair request, the profile is saved, and connected.</p>
+
+<h2>Step 1; Method Two: hciconfig</h2>
+
+<p>Using hciconfig, will make the RPI discoverable for all clients to then pair with.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Force RPI to become discoverable </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo hciconfig hci0 up &amp;&amp; sudo hciconfig hci0 piscan&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now follow the OSX pairing procedure.</p>
+
+<h2>Step 2; Configure Linux for serial over bluetooth</h2>
+
+<p>Backup rfcomm.conf:
+  <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cp /etc/bluetooth/rfcomm.conf /etc/bluetooth/rfcomm.bak</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Edit rfcomm by opening nano with admin privileges:
+  <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo nano /etc/bluetooth/rfcomm.conf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Replace contents of rfcomm with the following:
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Edit with: </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  # RFCOMM configuration file.
+</span><span class='line'>  #
+</span><span class='line'>  rfcomm0 {
+</span><span class='line'>     bind yes;
+</span><span class='line'>    # Bluetooth address of the device
+</span><span class='line'>    # Change xx:xx:... to your device's mac addr
+</span><span class='line'>   device xx:xx:xx:xx:xx:xx;
+</span><span class='line'>    # RFCOMM channel for the connection
+</span><span class='line'>    channel 1;
+</span><span class='line'>    # Description of the connection
+</span><span class='line'>    comment "Gumstix Bluetooth Serial Console";
+</span><span class='line'>  }
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Install Kermit:
+  <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install ckermit</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><strong>Reboot</strong> (important)</p>
+
+<p>Bind rfcomm connection:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux BT Address
+</span><span class='line'>note: $ hcitool dev &ndash;> will yield BT Address</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Start rfcomm connection:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kermit -l /dev/rfcomm1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Updating SSH Fingerprints]]></title>
@@ -39,7 +165,7 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh &lt;a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#x70;&#x69;&#x40;&#49;&#x39;&#x32;&#x2e;&#49;&#54;&#x38;&#46;&#49;&#49;&#x2e;&#52;&#57;">&#x70;&#105;&#x40;&#x31;&#x39;&#50;&#x2e;&#49;&#x36;&#56;&#x2e;&#49;&#49;&#46;&#x34;&#x39;&lt;/a>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh &lt;a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#112;&#x69;&#64;&#x31;&#x39;&#x32;&#x2e;&#x31;&#54;&#x38;&#x2e;&#x31;&#x31;&#46;&#52;&#57;">&#x70;&#x69;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x31;&#49;&#x2e;&#x34;&#x39;&lt;/a>
 </span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 </span><span class='line'>  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 </span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

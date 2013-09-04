@@ -9,16 +9,12 @@
   <meta name="description" content="Learn / Code / Share">
 
   
-    <title>RTL-SDR Server Setup - Christopher Fields</title>
+    <title>SSH over Bluetooth (2/3rds Complete) - Christopher Fields</title>
   
 
 
   
-  <meta name="description" content="RTL-SDR Server Software (debian): Raspbian Wheezy, Build July 26th, 2013. &ndash; (source) Get 1
-2
-3
-apt-get install libusb-1.0.0-dev
-git clone git &hellip;">
+  <meta name="description" content="Background Information In this situation, the intention is to create an SSH connection between an RPI (linux) system and an OSX system. For this &hellip;">
   
 
 
@@ -29,7 +25,7 @@ git clone git &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp">
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/09/03/ssh-over-bluetooth">
   <link href="/favicon.ico" rel="icon">
   <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -156,7 +152,7 @@ git clone git &hellip;">
   
   <header>
     
-      <h1 class="entry-title">RTL-SDR Server Setup</h1>
+      <h1 class="entry-title">SSH Over Bluetooth (2/3rds Complete)</h1>
     
     
       <p class="meta">
@@ -169,7 +165,7 @@ git clone git &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp/" data-via="" data-counturl="http://pifst.github.io/blog/2013/08/20/outline-gqrx-over-tcp/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/09/03/ssh-over-bluetooth/" data-via="" data-counturl="http://pifst.github.io/blog/2013/09/03/ssh-over-bluetooth/" >Tweet</a>
   
   
   
@@ -178,23 +174,74 @@ git clone git &hellip;">
     
 
 
-<div class="entry-content"><h2>RTL-SDR Server</h2>
+<div class="entry-content"><h2>Background Information</h2>
 
-<p>  Software (debian):<br>
-  Raspbian Wheezy, Build July 26th, 2013. &ndash; <a href="http://downloads.raspberrypi.org/images/raspbian/2013-07-26-wheezy-raspbian/2013-07-26-wheezy-raspbian.zip" target="_blank">(source)</a></p>
+<p>In this situation, the intention is to create an SSH connection between an RPI (linux) system and an OSX system.  For this specific case I am using a Bluetooth 4.0 usb dongle found on <a href="http://www.amazon.com/Plugable-Bluetooth-Adapter-Windows-Compatible/dp/tech-data/B009ZIILLI/ref=de_a_smtd">Amazon</a> for $15.</p>
 
-<figure class='code'><figcaption><span>Get </span></figcaption>
+<p>For OSX; goto System Settings &ndash; Bluetooth.  Make sure bluetooth is turned on, and that it is in discoverable mode.</p>
+
+<h2>Step 1; Method One: hcitool</h2>
+
+<p>Using hcitool, will force a bluetooth pair on the clients machine from the RPI.</p>
+
+<figure class='code'><figcaption><span>Step One - Find client Bluetooth Address </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install libusb-1.0.0-dev
-</span><span class='line'>git clone git://git.osmocom.org/rtl-sdr.git
-</span><span class='line'>apt-get install cmake</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ hcitool scan
+</span><span class='line'>Scanning ...
+</span><span class='line'>    5X:XX:XX:XX:XX:XA mbr
+</span><span class='line'>note: (address obscured)</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><figcaption><span>Do </span></figcaption>
+<figure class='code'><figcaption><span>Step Two - Force client pair Bluetooth Address </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ hcitool cc 5X:XX:XX:XX:XX:XA
+</span><span class='line'>$ hcitool auth 5X:XX:XX:XX:XX:XA
+</span><span class='line'>note: commands must be quickly executed, within less than 2 seconds.</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the two commands are executed in quick succession, it will force a bluetooth pairing request on the client&rsquo;s computer.</p>
+
+<p><img src="/images/bluetooth_pair.png" />
+Checking the OSX client computer, accept the bluetooth pairing request.  The pairing code does not matter (it will not appear on the linux command line).  Just hit accept.</p>
+
+<p><img src="/images/bluetooth_paired.png" />
+After accepting the pair request, the profile is saved, and connected.</p>
+
+<h2>Step 1; Method Two: hciconfig</h2>
+
+<p>Using hciconfig, will make the RPI discoverable for all clients to then pair with.</p>
+
+<figure class='code'><figcaption><span>Force RPI to become discoverable </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo hciconfig hci0 up && sudo hciconfig hci0 piscan</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now follow the OSX pairing procedure.</p>
+
+<h2>Step 2; Configure Linux for serial over bluetooth</h2>
+
+<p>Backup rfcomm.conf:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cp /etc/bluetooth/rfcomm.conf /etc/bluetooth/rfcomm.bak</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Edit rfcomm by opening nano with admin privileges:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo nano /etc/bluetooth/rfcomm.conf</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Replace contents of rfcomm with the following:</p>
+
+<figure class='code'><figcaption><span>Edit with: </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -202,54 +249,56 @@ git clone git &hellip;">
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd rtl-sdr/
-</span><span class='line'>mkdir build
-</span><span class='line'>cd build
-</span><span class='line'>cmake ../ -DINSTALL_UDEV_RULES=ON # On to allow privlages for non-root users
-</span><span class='line'>make
-</span><span class='line'>sudo make install
-</span><span class='line'>sudo ldconfig</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># RFCOMM configuration file.
+</span><span class='line'>      #
+</span><span class='line'>      rfcomm0 {
+</span><span class='line'>         bind yes;
+</span><span class='line'>        # Bluetooth address of the device
+</span><span class='line'>        # Change xx:xx:... to your device's mac addr
+</span><span class='line'>       device xx:xx:xx:xx:xx:xx;
+</span><span class='line'>        # RFCOMM channel for the connection
+</span><span class='line'>        channel 1;
+</span><span class='line'>        # Description of the connection
+</span><span class='line'>        comment "Gumstix Bluetooth Serial Console";
+</span><span class='line'>      }</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Radio &amp; Antenna</h2>
+<p>Install Kermit:</p>
 
-<ol>
-<li> Dual band 2M / 70CM slim jim ladder with 16&#8217; of rg-58 extension <a href="http://www.2wayelectronix.com/Dual-band-2m-70cm-Slim-Jim-Antenna-with-16-rg-58-dual-slim-16.htm" target="_blank">(purchase)</a>.<br>
-  
-<figure class='code'><figcaption><span>Specifications </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install ckermit</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Reboot</strong> (important)</p>
+
+<p>Bind rfcomm connection:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Length - 6 Feet tip to connector.
-</span><span class='line'>  1.5:1 Bandwidth > 4mhz
-</span><span class='line'>  Power Handling - 100 watts
-</span><span class='line'>  Gain - Approx 6dbi 2m 5dbi 70cm
-</span><span class='line'>  Weight - 6oz
-</span><span class='line'>  Connector - Assorted
-</span><span class='line'>  Construction - 450 ohm ladder line.</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux BT Address
+</span><span class='line'>note: $ hcitool dev -> will yield BT Address</span></code></pre></td></tr></table></div></figure>
 
 
-<li> 6inch RG316 MCX male right angel to SMA female jack RF Pigtail <a href="http://www.ebay.com/itm/6inch-RG316-MCX-male-right-angel-to-SMA-female-jack-RF-Pigtail-Jumper-Cable-15cm-/170993798886" target="_blank">(purchase)</a>.<br>
+<p>Start rfcomm connection:</p>
 
-<li> RTL2832U S.D.R. w/ E4000 Tuner <a href="http://www.amazon.com/gp/product/B009U7WZCA/ref=oh_details_o00_s00_i00?ie=UTF8&psc=1" target="_blank">(purchase)</a>.<br>
-  E4000 currently considered the best tuner, with minor draw backs.  This product uses an MCX Female jack, which is a relatively uncommon standard.  The provided antenna is useful for harvesting the MCX Male jack.
-
-</ol>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kermit -l /dev/rfcomm1</span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="/images/sdr_mcx-smaF-smaM-70cm2m.jpg"><img src="/images/sdr_mcx-smaF-smaM-70cm2m.jpg" /> </a><br></p>
+<p><a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
 </div>
 
 
   <footer>
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2013/09/03/updating-an-ssh-key/" title="Previous Post: Updating SSH Fingerprints">&laquo; Previous post</a>
       
-        <a class="basic-alignment right" href="/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" title="next Post: Using a Raspberry PI for SDR over TCP/IP">Next post &raquo;</a>
       
     </p>
   </footer>
