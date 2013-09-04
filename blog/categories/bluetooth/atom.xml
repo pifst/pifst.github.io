@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Bluetooth | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/bluetooth/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-09-04T01:45:56-04:00</updated>
+  <updated>2013-09-04T14:31:13-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -82,8 +82,43 @@ After accepting the pair request, the profile is saved, and connected.</p>
   <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo nano /etc/bluetooth/rfcomm.conf</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Replace contents of rfcomm with the following:
-  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Edit with: </span></figcaption>
+<p>Replace contents of rfcomm with the following:</p>
+
+<pre><code><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Edit rfcomm with: </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># RFCOMM configuration file.
+</span><span class='line'>  #
+</span><span class='line'>  rfcomm0 {
+</span><span class='line'>     bind yes;
+</span><span class='line'>    # Bluetooth address of the device
+</span><span class='line'>    # Change xx:xx:... to your device's mac addr
+</span><span class='line'>   device xx:xx:xx:xx:xx:xx;
+</span><span class='line'>    # RFCOMM channel for the connection
+</span><span class='line'>    channel 1;  # SerialPort Channel
+</span><span class='line'>    # Description of the connection
+</span><span class='line'>    comment "Gumstix Bluetooth Serial Console";
+</span><span class='line'>  }
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+<a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
+
+<p>To confirm that your bluetooth device runs the SerialPort service over channel 1:L
+  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Verify available bluetooth services, by channel: </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -101,20 +136,52 @@ After accepting the pair request, the profile is saved, and connected.</p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sdptool browse
+</span><span class='line'>  .
+</span><span class='line'>  .
+</span><span class='line'>  Service Name: SerialPort      # &lt;&mdash;&ndash; Confirm
+</span><span class='line'>  Service RecHandle: 0x10009
+</span><span class='line'>  Service Class ID List:&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>  # RFCOMM configuration file.
-</span><span class='line'>  #
-</span><span class='line'>  rfcomm0 {
-</span><span class='line'>     bind yes;
-</span><span class='line'>    # Bluetooth address of the device
-</span><span class='line'>    # Change xx:xx:... to your device's mac addr
-</span><span class='line'>   device xx:xx:xx:xx:xx:xx;
-</span><span class='line'>    # RFCOMM channel for the connection
-</span><span class='line'>    channel 1;
-</span><span class='line'>    # Description of the connection
-</span><span class='line'>    comment "Gumstix Bluetooth Serial Console";
-</span><span class='line'>  }
+</span><span class='line'>&lt;pre>&lt;code>"Serial Port" (0x1101)
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Protocol Descriptor List:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>"L2CAP" (0x0100)
+</span><span class='line'>"RFCOMM" (0x0003)
+</span><span class='line'>  Channel: 1                # &lt;--- Confirm
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Language Base Attr List:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>code_ISO639: 0x656e
+</span><span class='line'>encoding:    0x6a
+</span><span class='line'>base_offset: 0x100
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Profile Descriptor List:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>"Serial Port" (0x1101)
+</span><span class='line'>  Version: 0x0100
+</span><span class='line'>.
+</span><span class='line'>.
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -128,14 +195,14 @@ After accepting the pair request, the profile is saved, and connected.</p>
 <p>Bind rfcomm connection:
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux BT Address
-</span><span class='line'>note: $ hcitool dev &ndash;> will yield BT Address</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux bluetooth address
+</span><span class='line'>note: $ hcitool dev &ndash;> Will yield linux bluetooth address</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Initiate Connection</h2>
 
 <p>Start rfcomm connection:
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ kermit -l /dev/rfcomm1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
 ]]></content>
   </entry>
   

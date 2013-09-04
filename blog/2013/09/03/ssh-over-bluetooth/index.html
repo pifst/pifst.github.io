@@ -241,7 +241,7 @@ After accepting the pair request, the profile is saved, and connected.</p>
 
 <p>Replace contents of rfcomm with the following:</p>
 
-<figure class='code'><figcaption><span>Edit with: </span></figcaption>
+<figure class='code'><figcaption><span>Edit rfcomm with: </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -262,10 +262,57 @@ After accepting the pair request, the profile is saved, and connected.</p>
 </span><span class='line'>        # Change xx:xx:... to your device's mac addr
 </span><span class='line'>       device xx:xx:xx:xx:xx:xx;
 </span><span class='line'>        # RFCOMM channel for the connection
-</span><span class='line'>        channel 1;
+</span><span class='line'>        channel 1;  # SerialPort Channel
 </span><span class='line'>        # Description of the connection
 </span><span class='line'>        comment "Gumstix Bluetooth Serial Console";
 </span><span class='line'>      }</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
+
+<p>To confirm that your bluetooth device runs the SerialPort service over channel 1:L</p>
+
+<figure class='code'><figcaption><span>Verify available bluetooth services, by channel: </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sdptool browse
+</span><span class='line'>  .
+</span><span class='line'>  .
+</span><span class='line'>  Service Name: SerialPort      # &lt;--- Confirm
+</span><span class='line'>  Service RecHandle: 0x10009
+</span><span class='line'>  Service Class ID List:
+</span><span class='line'>    "Serial Port" (0x1101)
+</span><span class='line'>  Protocol Descriptor List:
+</span><span class='line'>    "L2CAP" (0x0100)
+</span><span class='line'>    "RFCOMM" (0x0003)
+</span><span class='line'>      Channel: 1                # &lt;--- Confirm
+</span><span class='line'>  Language Base Attr List:
+</span><span class='line'>    code_ISO639: 0x656e
+</span><span class='line'>    encoding:    0x6a
+</span><span class='line'>    base_offset: 0x100
+</span><span class='line'>  Profile Descriptor List:
+</span><span class='line'>    "Serial Port" (0x1101)
+</span><span class='line'>      Version: 0x0100
+</span><span class='line'>    .
+</span><span class='line'>    .</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Install Kermit:</p>
@@ -280,9 +327,11 @@ After accepting the pair request, the profile is saved, and connected.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux BT Address
-</span><span class='line'>note: $ hcitool dev -> will yield BT Address</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo rfcomm bind 1 xx:xx:xx:xx:xx:xx # Linux bluetooth address
+</span><span class='line'>note: $ hcitool dev -> Will yield linux bluetooth address</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Initiate Connection</h2>
 
 <p>Start rfcomm connection:</p>
 
@@ -290,7 +339,7 @@ After accepting the pair request, the profile is saved, and connected.</p>
 </pre></td><td class='code'><pre><code class=''><span class='line'>$ kermit -l /dev/rfcomm1</span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="http://chongtin.bol.ucla.edu/qgblueser.html">Source</a></p>
+
 </div>
 
 
