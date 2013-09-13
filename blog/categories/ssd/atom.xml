@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SSD | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/ssd/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-09-12T22:58:01-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Optimizing Solid State Disks]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/12/optimizing-ssd/"/>
+    <updated>2013-09-12T12:44:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/12/optimizing-ssd</id>
+    <content type="html"><![CDATA[<p>This is meant to be a quick guide outlining how to setup a SSD, documenting the process at each step using a benchmarking software called <a href="http://crystalmark.info/software/CrystalDiskMark/index-e.html">CrystalDiskMark</a>.</p>
+
+<h2>SSD Memory Cell Clearing</h2>
+
+<p>The first step is returning the disk to it&rsquo;s original, unused state using a linux tool called &lsquo;hdparm&rsquo;.  I refered to the ArchLinux Wiki which has a <a href="http://wiki.archlinux.org/index.php/SSD_Memory_Cell_Clearing">great explanation</a> on the reasons behind it&rsquo;s use, as well the procedure in using hdparm properly.  Note, while the guide is provided by ArchLinux, hdparm is a tool available for use with Debian distro&rsquo;s (Ubuntu, Mint, Crunchbang, etc) as well.</p>
+
+<h2>Benchmarks</h2>
+
+<p><img src="/images/ssd_benchmark.png" /></p>
+
+<h2>Case #1: Clear BIOS, IDE mode</h2>
+
+<p>To illustrate the benefit the AHCI interface provides, let&rsquo;s first benchmark with AHCI off.  After formatting the drive, I jumpered the CMOS reset pins, confirmed the BIOS was set to IDE mode, and installed windows 7 using a bootable thumbdrive.</p>
+
+<p>This is the &lsquo;baseline&rsquo; benchmark.</p>
+
+<h2>Case #2: Update Motherboard BIOS</h2>
+
+<p>While I was downloading the windows 7 drivers for my motherboard I discovered that my BIOS was very out of date (I was running 1.70, 3.10 was current).  Luckily ASROCK has a painless updating utility that loads the new BIOS from Windows.</p>
+
+<p>After making this change I re-benchmarked, finding that the BIOS update had little effect on disk I/O.</p>
+
+<h2>Case #3: Prepare Windows for AHCI, enable in BIOS</h2>
+
+<p>Windows 7 needs AHCI drivers for the SATA chipset interface in order to read the disk at boot.  Without them, Windows will simply not boot.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Error upon boot </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>STOP 0x0000007B INACCESSABLE_BOOT_DEVICE</span></code></pre></td></tr></table></div></figure></notextile></div>
+In Microsoft&rsquo;s infinite wisdom, AHCI drivers are not preloaded and is unable to adapt to a changed disk interface.  Fear not however, there is a fix.</p>
+
+<p>Microsoft&rsquo;s <a href="http://support.microsoft.com/kb/922976">Support Article #922976</a>, details the problem, and provides a downloadable solution that involves modifying the Windows Registry which instructs Windows 7 to expect a different SATA controller, and to prompt for drivers.  In case Microsoft&rsquo;s support article changes, I will provide Microsoft&rsquo;s instructions below:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>DIY Registry Fix</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1.  Exit all Windows-based programs.
+</span><span class='line'>2.  Click Start, type regedit in the Start Search box, and then press ENTER.
+</span><span class='line'>3.  If you receive the User Account Control dialog box, click Continue.
+</span><span class='line'>4.  Locate and then click one of the following registry subkeys:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Msahci
+</span><span class='line'>  HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\IastorV
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;ol>
+</span><span class='line'>&lt;li>In the pane on the right side, right-click Start in the Name column, and then click Modify.&lt;/li>
+</span><span class='line'>&lt;li>In the Value data box, type 0, and then click OK.&lt;/li>
+</span><span class='line'>&lt;li>On the File menu, click Exit to close Registry Editor.&lt;/li>
+</span><span class='line'>&lt;li>Reboot&lt;/li>
+</span><span class='line'>&lt;li>Install AHCI drivers provided on your motherboards support page</span></code></pre></td></tr></table></div></figure></notextile></div></li>
+</ol>
+
+
+<p>After enabling AHCI, the benchmark data clearly speaks for itself.  Predictably the largest increase involved Random Reads of 4KB with Queue Depth (QD) of 32, increasing 887.09 percent to 226.79 MB/s!  In plain English this test&rsquo;s the disk&rsquo;s ability to concurrently (32 times) read a 4KB file.  4 KiloBytes also happens to be the generally accepted cluster size for most disk partitions, meaning it is testing the smallest readable file.</p>
+
+<p>This increase in Random Read 4kB (QD=32) thruput is attributed to Native Command Queuing (NCQ), a feature enabled by AHCI.  NCQ is a feature that re-organizes I/O functions into similar groups to increase processing efficiency.  However without concurrent reading, NCQ is of little help evidenced in the Random Read 4kB (QD=1) benchmark.</p>
+
+<p>For more information, refer to the <a href="https://www.sata-io.org/native-command-queuing">NCQ reference</a> provided by the Serial ATA International Organization.</p>
+
+<h2>Case 4: Updating SSD Firmware</h2>
+
+<p>I purchased the Crucial M4 SSD relatively soon after it was made available for sale in the Fall of 2011.  As such the disk&rsquo;s firmware was 7 releases behind the latest revision 070H.  Since there was no risk of losing information (only time associated with formatting &amp; reinstalling Windows), I downloaded Crucial&rsquo;s latest firmware update.</p>
+
+<p>Roughly ten minutes later the firmware was up to date, and I was benchmarking for the last time.  The results were almost as dramatic as Case #3, with sequential reading almost hitting 500 MB/s.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Christopher Fields">
+  <meta name="description" content="Learn / Code / Share">
+
+  
+    <title>Optimizing Solid State Disks - Christopher Fields</title>
+  
+
+
+  
+  <meta name="description" content="This is meant to be a quick guide outlining how to setup a SSD, documenting the process at each step using a benchmarking software called &hellip;">
+  
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/09/12/optimizing-ssd">
+  <link href="/favicon.ico" rel="icon">
+  <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Learn / Code / Share" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43354408-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+
+
+<body   >
+
+	<div class="container">
+
+		<div class="four columns">
+  			<nav role="navigation"><ul class="title">
+  <li><a href="/">Chris Fields</a></li>
+</ul>
+
+<ul class="main-navigation icons-ul">
+
+  <li class="other"><i class="icon-lightbulb icon-large icon-style icon-li"></i> <a href="/">Blog</a></li>
+
+  <li class="other"><i class="icon-beaker icon-large icon-style icon-li"></i> <a href="/projects">Projects</a></li>
+
+  <li class="other"><i class="icon-github icon-large icon-style icon-li"></i> <a target="_blank" href="https://github.com/pifst" target="_blank">GitHub</a></li>
+
+  <li class="other"><i class="icon-file-text-alt icon-large icon-style icon-li"></i> <a target="_blank" href="http://www.linkedin.com/in/csffsc/">Resume</a></li>
+
+  <li class="other"><i class="icon-rocket icon-large icon-style icon-li"></i> <a href="mailto:chris@csfields.com">Contact</a></li>
+</ul>
+
+
+
+<ul class="subscription" data-subscription="rss">
+
+<section id="code">
+
+<form action="http://google.com/search" method="get">
+  <div class="input-prepend">
+   <fieldset role="search">
+
+      <input type="hidden" name="q" value="site:pifst.github.io" />
+      <input class="search" type="text" name="q" style="width:100px" results="0" placeholder="Search"/>
+    </fieldset>
+  </div>
+</form>
+
+</ul>
+</section>
+  
+
+
+</nav>
+        <aside class="sidebar">
+          
+            <section>
+  <h3>/Recent Posts</h3>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/12/optimizing-ssd/">Optimizing Solid State Disks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/03/ssh-over-bluetooth/">SSH over Bluetooth (2/3rds Complete)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/03/updating-an-ssh-key/">Updating SSH Fingerprints</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/03/going-to-stratarx-9-slash-26-and-9-slash-27/">Going to StrataRx!</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/27/software-defined-radio/">Software Defined Radio: A Primer</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+          
+
+
+
+
+
+        </aside>
+  	</div>
+
+    
+
+  	<div id="main" class="twelve columns">
+	    <div id="content">
+	      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Optimizing Solid State Disks</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/09/12/optimizing-ssd/" data-via="" data-counturl="http://pifst.github.io/blog/2013/09/12/optimizing-ssd/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+
+
+<div class="entry-content"><p>This is meant to be a quick guide outlining how to setup a SSD, documenting the process at each step using a benchmarking software called <a href="http://crystalmark.info/software/CrystalDiskMark/index-e.html">CrystalDiskMark</a>.</p>
+
+<h2>SSD Memory Cell Clearing</h2>
+
+<p>The first step is returning the disk to it&rsquo;s original, unused state using a linux tool called &lsquo;hdparm&rsquo;.  I refered to the ArchLinux Wiki which has a <a href="http://wiki.archlinux.org/index.php/SSD_Memory_Cell_Clearing">great explanation</a> on the reasons behind it&rsquo;s use, as well the procedure in using hdparm properly.  Note, while the guide is provided by ArchLinux, hdparm is a tool available for use with Debian distro&rsquo;s (Ubuntu, Mint, Crunchbang, etc) as well.</p>
+
+<h2>Benchmarks</h2>
+
+<p><img src="/images/ssd_benchmark.png" /></p>
+
+<h2>Case #1: Clear BIOS, IDE mode</h2>
+
+<p>To illustrate the benefit the AHCI interface provides, let&rsquo;s first benchmark with AHCI off.  After formatting the drive, I jumpered the CMOS reset pins, confirmed the BIOS was set to IDE mode, and installed windows 7 using a bootable thumbdrive.</p>
+
+<p>This is the &lsquo;baseline&rsquo; benchmark.</p>
+
+<h2>Case #2: Update Motherboard BIOS</h2>
+
+<p>While I was downloading the windows 7 drivers for my motherboard I discovered that my BIOS was very out of date (I was running 1.70, 3.10 was current).  Luckily ASROCK has a painless updating utility that loads the new BIOS from Windows.</p>
+
+<p>After making this change I re-benchmarked, finding that the BIOS update had little effect on disk I/O.</p>
+
+<h2>Case #3: Prepare Windows for AHCI, enable in BIOS</h2>
+
+<p>Windows 7 needs AHCI drivers for the SATA chipset interface in order to read the disk at boot.  Without them, Windows will simply not boot.</p>
+
+<figure class='code'><figcaption><span>Error upon boot </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>STOP 0x0000007B INACCESSABLE_BOOT_DEVICE</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In Microsoft&rsquo;s infinite wisdom, AHCI drivers are not preloaded and is unable to adapt to a changed disk interface.  Fear not however, there is a fix.</p>
+
+<p>Microsoft&rsquo;s <a href="http://support.microsoft.com/kb/922976">Support Article #922976</a>, details the problem, and provides a downloadable solution that involves modifying the Windows Registry which instructs Windows 7 to expect a different SATA controller, and to prompt for drivers.  In case Microsoft&rsquo;s support article changes, I will provide Microsoft&rsquo;s instructions below:</p>
+
+<figure class='code'><figcaption><span>DIY Registry Fix</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1.  Exit all Windows-based programs.
+</span><span class='line'>2.  Click Start, type regedit in the Start Search box, and then press ENTER.
+</span><span class='line'>3.  If you receive the User Account Control dialog box, click Continue.
+</span><span class='line'>4.  Locate and then click one of the following registry subkeys:
+</span><span class='line'>      HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Msahci
+</span><span class='line'>      HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\IastorV
+</span><span class='line'>5.  In the pane on the right side, right-click Start in the Name column, and then click Modify.
+</span><span class='line'>6.  In the Value data box, type 0, and then click OK.
+</span><span class='line'>7.  On the File menu, click Exit to close Registry Editor.
+</span><span class='line'>8.  Reboot
+</span><span class='line'>9.  Install AHCI drivers provided on your motherboards support page</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After enabling AHCI, the benchmark data clearly speaks for itself.  Predictably the largest increase involved Random Reads of 4KB with Queue Depth (QD) of 32, increasing 887.09 percent to 226.79 MB/s!  In plain English this test&rsquo;s the disk&rsquo;s ability to concurrently (32 times) read a 4KB file.  4 KiloBytes also happens to be the generally accepted cluster size for most disk partitions, meaning it is testing the smallest readable file.</p>
+
+<p>This increase in Random Read 4kB (QD=32) thruput is attributed to Native Command Queuing (NCQ), a feature enabled by AHCI.  NCQ is a feature that re-organizes I/O functions into similar groups to increase processing efficiency.  However without concurrent reading, NCQ is of little help evidenced in the Random Read 4kB (QD=1) benchmark.</p>
+
+<p>For more information, refer to the <a href="https://www.sata-io.org/native-command-queuing">NCQ reference</a> provided by the Serial ATA International Organization.</p>
+
+<h2>Case 4: Updating SSD Firmware</h2>
+
+<p>I purchased the Crucial M4 SSD relatively soon after it was made available for sale in the Fall of 2011.  As such the disk&rsquo;s firmware was 7 releases behind the latest revision 070H.  Since there was no risk of losing information (only time associated with formatting &amp; reinstalling Windows), I downloaded Crucial&rsquo;s latest firmware update.</p>
+
+<p>Roughly ten minutes later the firmware was up to date, and I was benchmarking for the last time.  The results were almost as dramatic as Case #3, with sequential reading almost hitting 500 MB/s.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/03/ssh-over-bluetooth/" title="Previous Post: SSH over Bluetooth (2/3rds Complete)">&laquo; Previous post</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+	    </div>
+  	</div>
+
+  <footer role="contentinfo"  class="sixteen columns"><center>
+<p class="credit">
+  <span class="credit">Powered by <a href="http://github.com">GitHub</a>, <a href="https://github.com/imathis/octopress">Octopress</a>, &amp; <a href="https://github.com/dhgamache/Skeleton">Skeleton</a></span>.
+</p>
+</center>
+</footer>
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+  jQuery.noConflict()('li.other').hover (
+    function () {
+    jQuery.noConflict()(this).toggleClass("current-menu-item")
+  });
+</script>
+
+</body>
+</html>
+
+
+	</div> <!-- container -->
