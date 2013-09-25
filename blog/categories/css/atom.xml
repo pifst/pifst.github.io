@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CSS | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-09-25T14:31:22-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Color Schemes &amp; SCSS]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/25/color-schemes-and-scss/"/>
+    <updated>2013-09-25T00:01:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/25/color-schemes-and-scss</id>
+    <content type="html"><![CDATA[<p>New project, new website, which means new stylesheets.  These resources will help you find a suitable color palette, and then use it with SCSS.</p>
+
+<h2>Color Scheme Resources</h2>
+
+<p><a href="http://colorschemedesigner.com/#">Color Scheme Designerr</a> &ndash; Hands down, the <strong>best feature</strong> is the ability to quickly preview a new color scheme in mocked up dark &amp; light preview pages.  Schemes can be generated from a color that you have, or generated randomly, by placing constraints.  The utility exports to a variety of formats including hexidecimal, html/css, and Photoshop palette.</p>
+
+<p><a href="https://kuler.adobe.com/">Adobe Kuler</a> &ndash; Similar to the above utility, however Kuler will create color palettes from a photo, as well as provide searchable access to tons of palettes.</p>
+
+<p><a href="http://colourco.de/">ColourCode</a> &ndash; Probably the simplest utility to use, without lacking needed features.</p>
+
+<h2>SCSS Resources</h2>
+
+<p><a href="http://sassme.arc90.com/">SassMe</a> &ndash; Great visual representation of the SASS operators [Darken/Lighten], [Desaturate/Saturate] and [Adjust Hue].  Begin with a color, and experiment.</p>
+
+<p><a href="http://jackiebalzer.com/color">Sass &amp; Compass Color Functions</a> &ndash; Complete explanations for all SASS &amp; Compass color functions.  Code &amp; visual representations included.</p>
+
+<p><a href="http://robots.thoughtbot.com/post/12974565313/controlling-color-with-sass-color-functions">Controlling color with Sass color functions</a> &ndash; Thoughtbot wrote a short, but well written article detailing SASS color transformations, complete with code &amp; resulting color examples.</p>
+
+<p><a href="http://compass-style.org/">Compass</a> &ndash; Framework that leverages SCSS.</p>
+]]></content>
+  </entry>
+  
+</feed>

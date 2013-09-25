@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SSD | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/ssd/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-09-12T22:58:01-04:00</updated>
+  <updated>2013-09-25T14:31:22-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -27,6 +27,9 @@
 <h2>Benchmarks</h2>
 
 <p><img src="/images/ssd_benchmark.png" /></p>
+
+<div id="ssd_graph" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
 
 <h2>Case #1: Clear BIOS, IDE mode</h2>
 
@@ -64,24 +67,20 @@ In Microsoft&rsquo;s infinite wisdom, AHCI drivers are not preloaded and is unab
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1.  Exit all Windows-based programs.
-</span><span class='line'>2.  Click Start, type regedit in the Start Search box, and then press ENTER.
-</span><span class='line'>3.  If you receive the User Account Control dialog box, click Continue.
-</span><span class='line'>4.  Locate and then click one of the following registry subkeys:&lt;/p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Exit all Windows-based programs.
+</span><span class='line'>Click Start, type regedit in the Start Search box, and then press ENTER.
+</span><span class='line'>If you receive the User Account Control dialog box, click Continue.
+</span><span class='line'>Locate and then click one of the following registry subkeys:&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>  HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Msahci
 </span><span class='line'>  HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\IastorV
 </span><span class='line'>&lt;/code>&lt;/pre>
 </span><span class='line'>
-</span><span class='line'>&lt;ol>
-</span><span class='line'>&lt;li>In the pane on the right side, right-click Start in the Name column, and then click Modify.&lt;/li>
-</span><span class='line'>&lt;li>In the Value data box, type 0, and then click OK.&lt;/li>
-</span><span class='line'>&lt;li>On the File menu, click Exit to close Registry Editor.&lt;/li>
-</span><span class='line'>&lt;li>Reboot&lt;/li>
-</span><span class='line'>&lt;li>Install AHCI drivers provided on your motherboards support page</span></code></pre></td></tr></table></div></figure></notextile></div></li>
-</ol>
-
+</span><span class='line'>&lt;p>In the pane on the right side, right-click Start in the Name column, and then click Modify.
+</span><span class='line'>In the Value data box, type 0, and then click OK.
+</span><span class='line'>On the File menu, click Exit to close Registry Editor.
+</span><span class='line'>Reboot
+</span><span class='line'>Install AHCI drivers provided on your motherboards support page</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>After enabling AHCI, the benchmark data clearly speaks for itself.  Predictably the largest increase involved Random Reads of 4KB with Queue Depth (QD) of 32, increasing 887.09 percent to 226.79 MB/s!  In plain English this test&rsquo;s the disk&rsquo;s ability to concurrently (32 times) read a 4KB file.  4 KiloBytes also happens to be the generally accepted cluster size for most disk partitions, meaning it is testing the smallest readable file.</p>
 

@@ -1,5 +1,5 @@
 $(function () {
-    $('#container').highcharts({
+    $('#ssd_graph').highcharts({
         title: {
              text: 'Optimization of Crucial M4-128GB Solid State Disk',
             x: -20 //center
@@ -8,7 +8,7 @@ $(function () {
             text: 'Source: CrystalDiskMark 3.0.2 x64',
             x: -20
         },
-
+51LNRDIIISwXr7C3EsRO3J9
        xAxis: {
             categories: [
                 'Case #1: BIOS; CMOS Reset',
