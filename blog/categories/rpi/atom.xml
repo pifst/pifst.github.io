@@ -4,13 +4,13 @@
   <title><![CDATA[Category: RPI | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/rpi/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-09-26T15:32:21-04:00</updated>
+  <updated>2013-09-27T00:57:02-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
     
   </author>
-  <generator uri="http://ryandeussing.com/">Ryan Deussing</generator>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
 
   
   <entry>
@@ -213,7 +213,7 @@ After accepting the pair request, the profile is saved, and connected.</p>
     <id>http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key</id>
     <content type="html"><![CDATA[<h2>Background</h2>
 
-<p> I recently needed to format &amp; reinstall a problem debian installation on my RPI.  Since I kept the default hostname (the root password did change.. sorry guys), my router&rsquo;s DHCP server recognized the RPI&rsquo;s MAC &amp; hostname as the same, issuing the same IP address; business as usual.</p>
+<p> I recently needed to format &amp; reinstall a problem debian installation on my RPI. Since the router&rsquo;s DHCP server recognized the MAC</p>
 
 <p> So upon connecting to the RPI&rsquo;s SSH daemon, I was presented with:</p>
 
@@ -232,7 +232,7 @@ After accepting the pair request, the profile is saved, and connected.</p>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh &lt;a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#112;&#105;&#64;&#x31;&#x39;&#50;&#x2e;&#x31;&#54;&#x38;&#x2e;&#49;&#49;&#46;&#x34;&#x39;">&#x70;&#105;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#x36;&#56;&#46;&#49;&#x31;&#x2e;&#52;&#x39;&lt;/a>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh &lt;a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#112;&#105;&#x40;&#x31;&#x39;&#x32;&#x2e;&#x31;&#x36;&#56;&#46;&#49;&#49;&#x2e;&#x34;&#57;">&#x70;&#x69;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#54;&#x38;&#46;&#x31;&#x31;&#46;&#x34;&#x39;&lt;/a>
 </span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 </span><span class='line'>  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 </span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
