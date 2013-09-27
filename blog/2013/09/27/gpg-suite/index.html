@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Christopher Fields">
+  <meta name="description" content="Learn / Code / Share">
+
+  
+    <title>Encrypting Emails with GPG Suite - Christopher Fields</title>
+  
+
+
+  
+  <meta name="description" content="After following the various NSA revelations and resulting Hacker News commentary I decided to learn about email encryption. The result, it&rsquo;s &hellip;">
+  
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/09/27/gpg-suite">
+  <link href="/favicon.ico" rel="icon">
+  <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Learn / Code / Share" type="application/atom+xml">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43354408-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+
+
+<body   >
+
+	<div class="container">
+
+		<div class="four columns">
+  			<nav role="navigation"><ul class="title">
+  <li><a href="/">Chris Fields</a></li>
+</ul>
+
+<ul class="main-navigation icons-ul">
+
+  <li class="other"><i class="icon-lightbulb icon-large icon-style icon-li"></i> <a href="/">Blog</a></li>
+
+  <li class="other"><i class="icon-beaker icon-large icon-style icon-li"></i> <a href="/projects">Projects</a></li>
+
+  <li class="other"><i class="icon-github icon-large icon-style icon-li"></i> <a target="_blank" href="https://github.com/pifst" target="_blank">GitHub</a></li>
+
+  <li class="other"><i class="icon-file-text-alt icon-large icon-style icon-li"></i> <a target="_blank" href="http://www.linkedin.com/in/csffsc/">Resume</a></li>
+
+  <li class="other"><i class="icon-rocket icon-large icon-style icon-li"></i> <a href="mailto:chris@csfields.com">Contact</a></li>
+</ul>
+
+
+
+<ul class="subscription" data-subscription="rss">
+
+<section id="code">
+
+<form action="http://google.com/search" method="get">
+  <div class="input-prepend">
+   <fieldset role="search">
+
+      <input type="hidden" name="q" value="site:pifst.github.io" />
+      <input class="search" type="text" name="q" style="width:100px" results="0" placeholder="Search"/>
+    </fieldset>
+  </div>
+</form>
+
+</ul>
+</section>
+  
+
+
+</nav>
+        <aside class="sidebar">
+          
+            <section>
+  <h3>Recent Posts</h3>
+  <ul id="recent_posts">
+    
+      <li class="post">
+      <a href="/blog/2013/09/27/gpg-suite/">Encrypting Emails with GPG Suite</a>
+      </li>
+    
+      <li class="post">
+      <a href="/blog/2013/09/27/checking-md5-hashes/">Verifying Checksums</a>
+      </li>
+    
+      <li class="post">
+      <a href="/blog/2013/09/25/color-schemes-and-scss/">Color Schemes &amp; SCSS</a>
+      </li>
+    
+      <li class="post">
+      <a href="/blog/2013/09/12/optimizing-ssd/">Optimizing Solid State Disks</a>
+      </li>
+    
+      <li class="post">
+      <a href="/blog/2013/09/03/ssh-over-bluetooth/">SSH over Bluetooth (2/3rds Complete)</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+          
+
+
+
+
+
+        </aside>
+  	</div>
+
+    
+
+  	<div id="main" class="twelve columns">
+	    <div id="content">
+	      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Encrypting Emails With GPG Suite</h1>
+    
+    
+      <p class="meta">
+        
+      </p>
+    
+  </header>
+
+
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/09/27/gpg-suite/" data-via="" data-counturl="http://pifst.github.io/blog/2013/09/27/gpg-suite/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+
+
+<div class="entry-content"><p>After following the various NSA revelations and resulting <a href="http://news.ycombinator.com">Hacker News</a> commentary I decided to learn about email encryption.  The result, it&rsquo;s surprisingly easy.</p>
+
+<p>This article will be written from the perspective of a user running OSX and Google Mail.</p>
+
+<h2>Configure your Email</h2>
+
+<ol>
+<li><p>Enable IMAP access to your Gmail account following <a href="https://support.google.com/mail/troubleshooter/1668960?hl=en">Google&rsquo;s instructions</a></p></li>
+<li><p>Configure Apple&rsquo;s default e-mail application, Mail for use with your gmail account.  Enter your name, email &amp; password.  Next select &lsquo;IMAP&rsquo; as the account type, and use &lsquo;imap.google.com&rsquo; as the incoming mail server.  Once this is complete Mail will pull in your emails.</p></li>
+</ol>
+
+
+<h2>GPG Tools</h2>
+
+<p>Since the GPG guide does a very good job describing this entire process, I will just provide the highlights.</p>
+
+<ol>
+<li><p>Download the (GPG Suite](<a href="https://gpgtools.org/index.html">https://gpgtools.org/index.html</a>).  GPGtools provides an SHA-1 hash to verify the contents of the file are unchanged from their provided build.  My previous post explains why it&rsquo;s a good idea to confirm this.</p></li>
+<li><p>Create your GPG key, share your public key with the centralized keyserver.  Sharing the key with the central authority allows individuals to initiate encrypted conversations without knowing your public key.</p></li>
+<li><p>Remember, use a strong passphrase.  One way to easily produce strong pass-phrases is with Apple&rsquo;s built in Keychain password assistant. Two-factor authentication will further increase the strength, by combining the saved randomly generated string with a phrase that you remember. <img src="/images/passphrase_generation.png" /></p></li>
+<li><p>Send your <a href="http://support.gpgtools.org/kb/how-to/first-steps-where-do-i-start-where-do-i-begin#firstmail">first encrypted email</a>.  If the installation of GPGTools went well, your Mail application will have some new features, a green OpenPGP indicator at the top right of every new email, along with a Lock &amp; Star icon.  The Star icon indicates that the Mail application has access to your GPG keys, and is signing the message.  The lock button indicates that you have the recipient&rsquo;s public encryption key (this is why you uploaded your public key to the centralized authority).</p></li>
+<li><p>Check the encrypted email&rsquo;s plain-text contents, either with your Mail app, or by logging into Gmail.  Unencrypted, the contents will look something like this:</p></li>
+</ol>
+
+
+<figure class='code'><figcaption><span>Contents of an unencrypted email </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>-----BEGIN PGP MESSAGE-----
+</span><span class='line'>hQEMA/jf9D1aj/X2AQf/Z4thLbVpdsCGzM+vRNPgzRSKhVs9QyU4Cg2ZuqG7Ms2X
+</span><span class='line'>f521xQ+Nyiuhc/GVsljgdqjtODXy5xPBEsqwXrvPblFLDB+3b1Io/wZ6QQmJQiy0
+</span><span class='line'>key5sor19Ota7TqSqWbr+HIeX6ahCyoYanAyC06RHvqZJrMy4CFapNl/NxVdZAkO
+</span><span class='line'>yfacyBvzkvLEqqoZ8IWbbTTCfpN6MQzSRb+ywpkdcXTmQQ5FdkmCLVwq/Tdlv3Dj
+</span><span class='line'>lpPzW5TtOIQLJbDAev6p6VBQRHa35XSPcUb6dLVcJIkLWMo97evKINz+aCSJleDK
+</span><span class='line'>quYPv13+oUsfsxe70UCYgmc/Zp+7npbaLkufkxg5/4UBDAPjyQvSbjGaIQEH+wUJ
+</span><span class='line'>nXtEh53mJnMZjq4yZ3haJvGqhN87lFe54jsXpLvKV8mNXUCKVJAmy8LAUuxwVj6B
+</span><span class='line'>dVDE8A1q/K9/wf2m+FV3vqsjTy0v/gSmEFCezjILUIj7DjlERRQQPYjraTwAf0tu
+</span><span class='line'>NURWDlhyf0fjTNbBkRhtosxz70mkQmnjsIYi0n2mOKKdlNXQZ7OXJmqdrvI/Cy0O
+</span><span class='line'>PifV0veT87kdCQHECoq5pUECVZ58Rwi32yKin4VWeVO86WLiVYOtuf4bUqeDaENd
+</span><span class='line'>RuTR+zmS8LBME6wufZZ+DkI6ENccWQdvaf4rpCjG+6gMnGYwc0wAeecioOWbz8+s
+</span><span class='line'>xcDjtMZ0YKyL7sDNyRvS6QEtNla7IysADbwMP11xH8zvd4yNH5OGck9i+oJ3ExN5
+</span><span class='line'>jdMXxN3ajtstlbht/N/9hk3ioEoOhxXN2nKNiejBbH3sYPSsN/NtH/dpVV0k4ewm
+</span><span class='line'>+Pwg/98cXDr3ULLqZIz4N8urKBtdrEcqZjQQFAzy+zv0aMBiMlydGcqxyTUy5IVS
+</span><span class='line'>DT/+7X+btOWDchUtLTLsv81sXhhhtRpmSXaZ66mQC6POEwQD2DeiPZHj2clb8ysT
+</span><span class='line'>ABZF0K7un/WNx7uHWsjk8keuP7E4DPrevdW6nuq8M8erOSlOIRx4LXxM9vJ+YO/1
+</span><span class='line'>MyYO7UTtkAFcL4L8bcUL5NySX5ev0+57r8D4lU5mMe+cDf1b3qnJRyLEZ0ZLsYNe
+</span><span class='line'>lzLjRF/NsWhXhLWSONzAH6cCQuWgGREhPoD3hTnGjHO8uNLKDuiQOs4HfIC5dveR
+</span><span class='line'>zWtwArquKPpVjcPXbx4nN1zSH6aHgaZJQTtPpy8aIntcf52e2mA0aiWslTQOiuXM
+</span><span class='line'>kUrC4U7znRmBmmimTz1xENGtZiQCmgyRn4wZ7b7EdsU0g0DOy2ZJhbGhrcqFWDA9
+</span><span class='line'>ElW3gRQTevSWAUgTw7CVj6FmiXgazYZtFEFTbw0zsXtgjENTLmFNIW0sH7r3Ihua
+</span><span class='line'>hGOF9m92VuQNUvn8RS99JF5XWcg5sSw9uU/bmzMowLegLJVbGVAKWm3mT0pcCgBd
+</span><span class='line'>wKVMec6rQ60imtdRf2GT/pW/fcErSsx0ly2gRZJsDMjN8ZfPGDqUAMUfBEM4LeaW
+</span><span class='line'>YgEWtgOIEm34RbcyNfmkljOZgRVZ6Iz5xZl6kqWnmImsUr9eeHV4YM/gVOp5L0GW
+</span><span class='line'>o0338VZsoZQMcY8Ub+5P3pxSK9rs4w+HWwi+pdBPZT/6VWWEsCEMjA37lxgobecb
+</span><span class='line'>l3bWNOtNvoyTYC3fhz23b/cM8yJPJ05KXAHD+wIzrRv59bLr5fp0wC2R2WcBp07M
+</span><span class='line'>/mQRLCHqTZ0I+KRmGSe4PmatKi6TvPy1TxW7tvbPtGzO0yCxNPNNu5rhSkO8t14q
+</span><span class='line'>pKmNuY3vIspY3OfsGJ679H+NXMDZfO7puMFSpI60rVdrCnTCYT3yVG1z3v4W/y1i
+</span><span class='line'>mt5HWJwqRSbX/lUn2HY0aXeYDwhsWYnR3eo1rvAba0h8jNDvOQWTWdx1hyKeeHqF
+</span><span class='line'>4JPkgKH8QY5x1R9mWZHMvCizm6bRVU8=
+</span><span class='line'>=RbQ5
+</span><span class='line'>-----END PGP MESSAGE-----</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&rsquo;s it.  If you want to try this out, my public key is listed with the centralized GPG public key authority.  My address is: <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#99;&#104;&#114;&#x69;&#115;&#x40;&#99;&#x73;&#x66;&#105;&#101;&#x6c;&#100;&#115;&#46;&#99;&#111;&#x6d;">&#x63;&#x68;&#x72;&#105;&#x73;&#64;&#99;&#115;&#x66;&#105;&#x65;&#x6c;&#x64;&#x73;&#x2e;&#x63;&#111;&#x6d;</a></p>
+
+<p>If you want to learn more about encryption, I would <em>strongly</em> suggest beginning with <a href="https://www.schneier.com/">Bruce Schenier&rsquo;s</a> blog.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/27/checking-md5-hashes/" title="Previous Post: Verifying Checksums">&laquo; Previous post</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+	    </div>
+  	</div>
+
+  <footer role="contentinfo"  class="sixteen columns"><center>
+<p class="credit">
+  <span class="credit">Rendered from the best bits & bytes around.</span>
+</p>
+</center>
+
+</footer>
+
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+  jQuery.noConflict()('li.other').hover (
+    function () {
+    jQuery.noConflict()(this).toggleClass("current-menu-item")
+  });
+</script>
+
+</body>
+</html>
+
+
+	</div> <!-- container -->

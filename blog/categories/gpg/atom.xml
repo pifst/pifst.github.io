@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Security | Learn / Code / Share]]></title>
-  <link href="http://pifst.github.io/blog/categories/security/atom.xml" rel="self"/>
+  <title><![CDATA[Category: GPG, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/gpg/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
   <updated>2013-09-27T18:01:02-04:00</updated>
   <id>http://pifst.github.io/</id>
@@ -109,64 +109,9 @@
 </ol>
 
 
-<p>And that&rsquo;s it.  If you want to try this out, my public key is listed with the centralized GPG public key authority.  My address is: <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x63;&#x68;&#x72;&#105;&#x73;&#x40;&#99;&#x73;&#x66;&#105;&#x65;&#x6c;&#x64;&#115;&#46;&#99;&#111;&#x6d;">&#x63;&#x68;&#x72;&#x69;&#x73;&#64;&#99;&#x73;&#x66;&#x69;&#x65;&#108;&#100;&#x73;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>And that&rsquo;s it.  If you want to try this out, my public key is listed with the centralized GPG public key authority.  My address is: <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#x63;&#104;&#x72;&#x69;&#x73;&#x40;&#x63;&#115;&#x66;&#x69;&#101;&#108;&#x64;&#x73;&#x2e;&#99;&#x6f;&#x6d;">&#x63;&#x68;&#114;&#105;&#115;&#x40;&#x63;&#115;&#102;&#x69;&#101;&#108;&#100;&#x73;&#46;&#x63;&#x6f;&#109;</a></p>
 
 <p>If you want to learn more about encryption, I would <em>strongly</em> suggest beginning with <a href="https://www.schneier.com/">Bruce Schenier&rsquo;s</a> blog.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Updating SSH Fingerprints]]></title>
-    <link href="http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key/"/>
-    <updated>2013-09-03T18:25:00-04:00</updated>
-    <id>http://pifst.github.io/blog/2013/09/03/updating-an-ssh-key</id>
-    <content type="html"><![CDATA[<h2>Background</h2>
-
-<p> I recently needed to format &amp; reinstall a problem debian installation on my RPI. Since the router&rsquo;s DHCP server recognized the MAC</p>
-
-<p> So upon connecting to the RPI&rsquo;s SSH daemon, I was presented with:</p>
-
-<p>  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Fingerprint Error </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh &lt;a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#x70;&#105;&#x40;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x31;&#46;&#x34;&#x39;">&#112;&#105;&#x40;&#x31;&#57;&#x32;&#46;&#x31;&#54;&#56;&#x2e;&#49;&#49;&#x2e;&#x34;&#x39;&lt;/a>
-</span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-</span><span class='line'>  @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
-</span><span class='line'>  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-</span><span class='line'>  IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-</span><span class='line'>  Someone could be eavesdropping on you right now (man-in-the-middle attack)!
-</span><span class='line'>  It is also possible that a host key has just been changed.
-</span><span class='line'>  The fingerprint for the RSA key sent by the remote host is
-</span><span class='line'>  7d:d2:85:c6:b9:0f:ae:1a:ff:0e:29:57:d6:92:09:22.
-</span><span class='line'>  Please contact your system administrator.
-</span><span class='line'>  Add correct host key in /Users/Chris/.ssh/known_hosts to get rid of this message.
-</span><span class='line'>  Offending RSA key in /Users/Chris/.ssh/known_hosts:25
-</span><span class='line'>  RSA host key for 192.168.11.49 has changed and you have requested strict checking.
-</span><span class='line'>  Host key verification failed.</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<h2>Remove the outdated fingerprint</h2>
-
-<p>  <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Automated Removal </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sed -i &ldquo;25 d&rdquo; ~/.known_hosts</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Where &lsquo;<strong>25</strong>&rsquo; is the outdated fingerprint&rsquo;s line number, listed in the output.</p>
-
-<p>And that&rsquo;s it, log back in, verify the fingerprint and accept.</p>
-
-<p>Next up, install <a href="/blog/2013/08/26/mosh/">Mosh</a>!</p>
 ]]></content>
   </entry>
   
