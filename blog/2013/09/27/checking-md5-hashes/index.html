@@ -9,12 +9,12 @@
   <meta name="description" content="Learn / Code / Share">
 
   
-    <title>Using a Raspberry PI for SDR over TCP/IP - Christopher Fields</title>
+    <title>Verifying Checksums - Christopher Fields</title>
   
 
 
   
-  <meta name="description" content="Assuming you are on ethernet (or fast Wifi N), audio quality should be great. There will a slight delay in changing to frequencies, and a large (2 to &hellip;">
+  <meta name="description" content="MD5 checksums are a great way of determine if a downloaded file is free of errors, and/or unwanted malware. I recently used the the MD5 checksum tool &hellip;">
   
 
 
@@ -25,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip">
+  <link rel="canonical" href="http://pifst.github.io/blog/2013/09/27/checking-md5-hashes">
   <link href="/favicon.ico" rel="icon">
   <script type="text/javascript" src="http://use.typekit.com/zcp2xbp.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -156,7 +156,7 @@
   
   <header>
     
-      <h1 class="entry-title">Using a Raspberry PI for SDR Over TCP/IP</h1>
+      <h1 class="entry-title">Verifying Checksums</h1>
     
     
       <p class="meta">
@@ -169,7 +169,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" data-via="" data-counturl="http://pifst.github.io/blog/2013/08/26/using-a-raspberry-pi-for-sdr-over-tcp-slash-ip/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://pifst.github.io/blog/2013/09/27/checking-md5-hashes/" data-via="" data-counturl="http://pifst.github.io/blog/2013/09/27/checking-md5-hashes/" >Tweet</a>
   
   
   
@@ -178,99 +178,74 @@
     
 
 
-<div class="entry-content"><p>Assuming you are on ethernet (or fast Wifi N), audio quality should be great.  There will a slight delay in changing to frequencies, and a large (2 to 5 second) delay in changing the monitored frequency window.  These delays are reduced upon reducing the sample (step 4).</p>
+<div class="entry-content"><p>MD5 checksums are a great way of determine if a downloaded file is free of errors, and/or unwanted malware.  I recently used the the MD5 checksum tool to diagnose a corrupt Ubuntu image after encountering installation problems.</p>
 
-<h2>Confirm Installation</h2>
+<p>Similar methods are employed in a variety of daily cryptography, iOS (and the mac AppStore), SSL validation certificates, and HTTPS to name a few.</p>
 
-<p>To confirm a proper setup and device stability etc, run the following code over SSH:</p>
+<p>While it is best practice to check all files, walled eco-systems like iOS do this automatically, in reality anytime you are receiving a file from a high-risk source, an obscure mirror, torrent, random thumb drive, this is even more important.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_test -t</span></code></pre></td></tr></table></div></figure>
+<h2>MD5</h2>
+
+<p>Regardless of the reason, the process is the following:</p>
+
+<p>First locate the checksum from a reputable, trusted source.  In this case I located the hash on <a href="https://help.ubuntu.com/community/UbuntuHashes">Ubuntu&rsquo;s Hashes Page</a>.</p>
+
+<figure class='code'><figcaption><span>MD5 Checksum : Filename </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>7ad57cadae955bd04019389d4b9c1dcb *ubuntu-12.10-desktop-amd64.iso</span></code></pre></td></tr></table></div></figure>
 
 
-<p>  Resulting in an output similar to:</p>
+<p>Next, the process of interrogating the file:</p>
 
-<figure class='code'><figcaption><span>Output of RTL_Test </span></figcaption>
+<p>Open a terminal, navigate to the directory containing the file.</p>
+
+<figure class='code'><figcaption><span>OSX: Interrogating MD5 Checksum </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Found 1 device(s):
-</span><span class='line'>      0:  ezcap USB 2.0 DVB-T/DAB/FM dongle
-</span><span class='line'>    Using device 0: ezcap USB 2.0 DVB-T/DAB/FM dongle
-</span><span class='line'>    Found Elonics E4000 tuner
-</span><span class='line'>    Supported gain values (18): -1.0 1.5 4.0 6.5 9.0 11.5 14.0 16.5 19.0 21.5 24.0 29.0 34.0 42.0 43.0 45.0 47.0 49.0
-</span><span class='line'>    Benchmarking E4000 PLL...
-</span><span class='line'>    [E4K] PLL not locked for 51000000 Hz!
-</span><span class='line'>    [E4K] PLL not locked for 2227000000 Hz!
-</span><span class='line'>    [E4K] PLL not locked for 1114000000 Hz!
-</span><span class='line'>    [E4K] PLL not locked for 1241000000 Hz!
-</span><span class='line'>    E4K range: 52 to 2226 MHz
-</span><span class='line'>    E4K L-band gap: 1114 to 1241 MHz</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ md5 ubuntu-12.10-desktop-amd64.iso  # MD5 filename.iso
+</span><span class='line'>7ad57cadae955bd04019389d4b9c1dcb  # expected result.</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Server IP</h2>
 
-<p>Obtain devices IP address, either thru;</p>
 
-<figure class='code'><figcaption><span>Obtain IP address of RPI </span></figcaption>
+<figure class='code'><figcaption><span>Ubuntu: Interrogating MD5 Checksum </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ipconfig # for wired lan
-</span><span class='line'>iwconfig # for wireless lan</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ md5sum ubuntu-12.10-desktop-amd64.iso  # MD5 filename.iso
+</span><span class='line'>7ad57cadae955bd04019389d4b9c1dcb  # expected result.</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Start RTL_TCP</h2>
+<p>Alternatively, you can calculate an MD5 hash of any file.  This can be a secure way of being certain that two files really are duplicates.</p>
 
-<p>Now over ssh put the device into listening mode, you can tell the program to only accept connections from a specific ip, or any.</p>
+<p>This is accomplished via the following process:</p>
 
-<figure class='code'><figcaption><span>RTL_TCP - Open to all clients</span></figcaption>
+<figure class='code'><figcaption><span>OSX: Creating MD5 Checksum </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 0.0.0.0</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ openssl md5 filename.iso</span></code></pre></td></tr></table></div></figure>
 
 
+<h2>SHA1</h2>
 
+<p>Less frequently you may encounter SHA1 checksums because it is a newer, stronger algorithm.  While theoretically the MD5 checksum is a very stronghas a very low possibility of collisions.  A collision is when two separate files yield the same checksum.  In cases like this, it is statistically improbable for a user to experience this scenario, however it is possible to show up taking into account every file in the universe.</p>
 
-<figure class='code'><figcaption><span>RTL_TCP - Open to specific clients</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rtl_tcp -a 192.168.X.X</span></code></pre></td></tr></table></div></figure>
+<p>Next, the process of interrogating the file:</p>
 
-
-<h2>Configure Gqrx</h2>
-
-<p>Open Gqrx, goto the Configure I/O Devices prompt.</p>
-
-<figure class='code'><figcaption><span>Gqrx - Configure I/O Devices </span></figcaption>
+<figure class='code'><figcaption><span>OSX: Interrogating SHA1 Checksum </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Device: RTL-SDR Spectrum Server
-</span><span class='line'>Device String: tcp=192.168.1.X:1234  # IP of RPI
-</span><span class='line'>Sample Rate: 1,500,000hz # Default
-</span><span class='line'>                         # Ideal is between 375,000 to 500,000</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/bin/openssl sha1 filename.iso  # or any other extension
+</span><span class='line'># compare output to expected result.</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Results</h2>
 
-<p>Hit the power button, enjoy:
-<a href="/images/Gqrx_rtl_tcp.jpg"><img src="/images/Gqrx_rtl_tcp.jpg" /> </a></p>
 
-<hr />
+<figure class='code'><figcaption><span>Ubuntu: Interrogating SHA1 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sha1sum -c filename.iso  # or any other extension
+</span><span class='line'># compare output to expected result.</span></code></pre></td></tr></table></div></figure>
 
-<p>Notes:</p>
 
-<ol>
-<li>SDR instability, is likely due to plugging directly into the raspberry pi.  Instead use a POWERED usb hub.</li>
-</ol>
 
 </div>
 
@@ -278,10 +253,8 @@
   <footer>
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/08/20/outline-gqrx-over-tcp/" title="Previous Post: RTL-SDR Server Setup">&laquo; Previous post</a>
+        <a class="basic-alignment left" href="/blog/2013/09/25/color-schemes-and-scss/" title="Previous Post: Color Schemes &amp; SCSS">&laquo; Previous post</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/08/26/mosh/" title="next Post: Mosh: SSH for the 21st Century">Next post &raquo;</a>
       
     </p>
   </footer>

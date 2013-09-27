@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MD5, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/md5/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-09-27T03:00:13-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Verifying Checksums]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/27/checking-md5-hashes/"/>
+    <updated>2013-09-27T01:13:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/27/checking-md5-hashes</id>
+    <content type="html"><![CDATA[<p>MD5 checksums are a great way of determine if a downloaded file is free of errors, and/or unwanted malware.  I recently used the the MD5 checksum tool to diagnose a corrupt Ubuntu image after encountering installation problems.</p>
+
+<p>Similar methods are employed in a variety of daily cryptography, iOS (and the mac AppStore), SSL validation certificates, and HTTPS to name a few.</p>
+
+<p>While it is best practice to check all files, walled eco-systems like iOS do this automatically, in reality anytime you are receiving a file from a high-risk source, an obscure mirror, torrent, random thumb drive, this is even more important.</p>
+
+<h2>MD5</h2>
+
+<p>Regardless of the reason, the process is the following:</p>
+
+<p>First locate the checksum from a reputable, trusted source.  In this case I located the hash on <a href="https://help.ubuntu.com/community/UbuntuHashes">Ubuntu&rsquo;s Hashes Page</a>.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>MD5 Checksum : Filename </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>7ad57cadae955bd04019389d4b9c1dcb *ubuntu-12.10-desktop-amd64.iso</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Next, the process of interrogating the file:</p>
+
+<p>Open a terminal, navigate to the directory containing the file.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>OSX: Interrogating MD5 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ md5 ubuntu-12.10-desktop-amd64.iso  # MD5 filename.iso
+</span><span class='line'>7ad57cadae955bd04019389d4b9c1dcb  # expected result.</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Ubuntu: Interrogating MD5 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ md5sum ubuntu-12.10-desktop-amd64.iso  # MD5 filename.iso
+</span><span class='line'>7ad57cadae955bd04019389d4b9c1dcb  # expected result.</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Alternatively, you can calculate an MD5 hash of any file.  This can be a secure way of being certain that two files really are duplicates.</p>
+
+<p>This is accomplished via the following process:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>OSX: Creating MD5 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ openssl md5 filename.iso</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>SHA1</h2>
+
+<p>Less frequently you may encounter SHA1 checksums because it is a newer, stronger algorithm.  While theoretically the MD5 checksum is a very stronghas a very low possibility of collisions.  A collision is when two separate files yield the same checksum.  In cases like this, it is statistically improbable for a user to experience this scenario, however it is possible to show up taking into account every file in the universe.</p>
+
+<p>Next, the process of interrogating the file:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>OSX: Interrogating SHA1 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/bin/openssl sha1 filename.iso  # or any other extension&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>compare output to expected result.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Ubuntu: Interrogating SHA1 Checksum </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sha1sum -c filename.iso  # or any other extension&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>compare output to expected result.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
