@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PGP, | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/pgp/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-09-27T18:01:02-04:00</updated>
+  <updated>2013-09-28T22:18:10-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -109,7 +109,7 @@
 </ol>
 
 
-<p>And that&rsquo;s it.  If you want to try this out, my public key is listed with the centralized GPG public key authority.  My address is: <a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#99;&#x68;&#114;&#105;&#115;&#x40;&#x63;&#x73;&#x66;&#105;&#x65;&#x6c;&#x64;&#115;&#x2e;&#99;&#111;&#x6d;">&#x63;&#x68;&#114;&#105;&#115;&#64;&#x63;&#115;&#102;&#105;&#x65;&#x6c;&#x64;&#x73;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>And that&rsquo;s it.  If you want to try this out, my public key is listed with the centralized GPG public key authority.  My address is: <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#99;&#x68;&#114;&#x69;&#115;&#64;&#99;&#115;&#102;&#x69;&#101;&#x6c;&#x64;&#115;&#46;&#x63;&#x6f;&#109;">&#99;&#x68;&#114;&#x69;&#115;&#x40;&#x63;&#115;&#x66;&#105;&#x65;&#108;&#x64;&#x73;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
 
 <p>If you want to learn more about encryption, I would <em>strongly</em> suggest beginning with <a href="https://www.schneier.com/">Bruce Schenier&rsquo;s</a> blog.</p>
 ]]></content>

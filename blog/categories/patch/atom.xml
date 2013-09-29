@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Patch, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/patch/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-09-28T22:18:10-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4: Patch]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/28/rails-4-put-vs-patch/"/>
+    <updated>2013-09-28T20:35:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/28/rails-4-put-vs-patch</id>
+    <content type="html"><![CDATA[<p>With the introduction of Rails 4, comes official support for a long neglected HTTP protocol, Patch.  This change was first proposed over two years ago in Rails <a href="https://github.com/rails/rails/issues/348">issue #348</a>.</p>
+
+<p>In Rails 3.2 and earlier, the Put command was used whenever an existing resource was updated.</p>
+
+<p>Now with the introduction of Patch, the Rails controller will prefer it&rsquo;s use when an existing resource is being partially updated.  Leaving the Put command for instances in which the record is being updated in it&rsquo;s entirety.  With this change, the vast majority of record updates will now occur using Patch.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Update Controller &ndash; Rails 4 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PATCH  /feature/:id(.:format)   features#update
+</span><span class='line'>PUT    /feature/:id(.:format)   features#update</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Additional reading on Patch</h3>
+
+<p><a href="http://tools.ietf.org/html/rfc5789">PATCH Method for HTTP</a> &ndash; IETF proposal for the use of Patch</p>
+
+<p><a href="http://weblog.rubyonrails.org/2012/2/25/edge-rails-patch-is-the-new-primary-http-method-for-updates/">Patch is the new primary HTTP method for updates</a> &ndash; Edge Rails blog post on the Patch method.</p>
+]]></content>
+  </entry>
+  
+</feed>
