@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-09-29T16:49:49-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why I use Rubymine]]></title>
+    <link href="http://pifst.github.io/blog/2013/09/28/why-i-use-rubymine/"/>
+    <updated>2013-09-28T23:03:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/09/28/why-i-use-rubymine</id>
+    <content type="html"><![CDATA[<h2>Comprehensive project support</h2>
+
+<p>Providing all of the basics:
+Local and remote development environments, deployment &amp; version control.  Project wide refactoring.  Full console &amp; database support.</p>
+
+<p>Rubymine brings with it code support &amp; documentation for Ruby 2.0 Rails 4, HTML 5, coffeescript, javascript, CSS and a variety of css pre-processors sass, scss &amp; less.  For the iOS ruby developers, support for RubyMotion.</p>
+
+<p>Beyond the traditional features developers expect from an IDE, RubyMine offers a feature called <a href="https://github.com/perfectionist/sample_project/wiki/Data-Model-Using-RubyMine">Model Diagramming</a>.</p>
+
+<p><a href="https://github.com/perfectionist/sample_project/wiki/Data-Model-Using-RubyMine"><img src="https://github.com/perfectionist/sample_project/wiki/images/FinalDataModelAnnotate.png"></a></p>
+
+<p>This feature creates a interactive representation of the project models, taking into account the database tables, relationships, and migrations.</p>
+
+<h2>Try it</h2>
+
+<p>For those who would like to try Rubymine, I reccomend two courses of action:</p>
+
+<ol>
+<li><p>Checkout RubyMine&rsquo;s <a href="http://www.jetbrains.com/ruby/documentation/index.html">documentation &amp; screencasts</a>, and <a href="http://www.jetbrains.com/ruby/download/index.html">download</a> a free 30-day trial.</p></li>
+<li><p>Since everyone should be familiar with Michael Hartl&rsquo;s, <a href="http://ruby.railstutorial.org/">Ruby on Rails Tutorial</a>.  I&rsquo;m refering you to a Rubymine tutorial that was adapted from Hartl&rsquo;s work for the purposes of learning the programs&rsquo;s features. David Loeffler&rsquo;s Rubymine wiki can be found on github <a href="https://github.com/perfectionist/sample_project/wiki">here</a>.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
