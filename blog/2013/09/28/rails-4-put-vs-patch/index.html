@@ -182,7 +182,9 @@
 
 <p>In Rails 3.2 and earlier, the Put command was used whenever an existing resource was updated.</p>
 
-<p>Now with the introduction of Patch, the Rails controller will prefer it&rsquo;s use when an existing resource is being partially updated.  Leaving the Put command for instances in which the record is being updated in it&rsquo;s entirety.  With this change, the vast majority of record updates will now occur using Patch.</p>
+<p>Now with the introduction of Patch, the Rails controller will prefer it&rsquo;s use when an existing resource is being partially updated.  Leaving the Put command for instances in which the record is being updated in it&rsquo;s entirety.</p>
+
+<p>With this change, the vast majority of record updates will now occur using Patch.</p>
 
 <figure class='code'><figcaption><span>Update Controller - Rails 4 </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
