@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-10-04T00:48:26-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python: Port Scanning]]></title>
+    <link href="http://pifst.github.io/blog/2013/10/04/python-port-scanning/"/>
+    <updated>2013-10-04T00:24:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/10/04/python-port-scanning</id>
+    <content type="html"><![CDATA[<p>Right now I&rsquo;m brushing up on my Python, as well as learning about firewalls.  I&rsquo;m currenly working with an opensource firewall utility thats available on many routers, called pfSense.  So far I&rsquo;ve been using a book called, <a href="http://www.amazon.com/gp/product/0979034280?ie=UTF8&amp;tag=pfsense-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0979034280">pfSense: The Definitive Guide</a></p>
+
+<p>In the course of learning some of the basics of firewalls, I thought I&rsquo;d investigate Python&rsquo;s native abilities on the topic, available by importing the <a href="http://docs.python.org/2/library/socket.html">Socket</a> library.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for returning active ports </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import socket
+</span><span class='line'>def retBanner(ip, port):&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>try:
+</span><span class='line'>    socket.setdefaulttimeout(2)
+</span><span class='line'>    s = socket.socket()
+</span><span class='line'>    s.connect((ip, port))
+</span><span class='line'>    banner = s.recv(1024)
+</span><span class='line'>    return banner
+</span><span class='line'>except:
+</span><span class='line'>    return
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def main():&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>iplist = [66]  # IP address of my raspberry pi
+</span><span class='line'>for x in iplist:  # Could be range, instead of list
+</span><span class='line'>    ip = '192.168.11.' + str(x)
+</span><span class='line'>    for port in range(1,35000):  # Defines Port Range
+</span><span class='line'>        banner = retBanner(ip, port)
+</span><span class='line'>        if banner:  # [+] Errorhandling; printing active ports
+</span><span class='line'>            print '[+] ' + ip + ':' + str(port) + ' - ' + banner
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &lsquo;&lt;strong>main&lt;/strong>&rsquo;:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>main()
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Results </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>Results&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$[+] 192.168.11.66:SSH-2.0-OpenSSH_6.1p1 Debian-4 # SSH Server
+</span><span class='line'>$[+] 192.168.11.66:RFB 003.007 # VNC server</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
