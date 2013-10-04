@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Socket | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/socket/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-10-04T00:48:26-04:00</updated>
+  <updated>2013-10-04T01:26:09-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -22,8 +22,8 @@
 
 <p>In the course of learning some of the basics of firewalls, I thought I&rsquo;d investigate Python&rsquo;s native abilities on the topic, available by importing the <a href="http://docs.python.org/2/library/socket.html">Socket</a> library.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for returning active ports </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Scanner.py &ndash; Code for returning active ports </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -53,36 +53,37 @@
 <span class='line-number'>28</span>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>import socket
-</span><span class='line'>def retBanner(ip, port):&lt;/p>
+</pre></td><td class='code'><pre><code class='py'><span class='line'><span class="kn">import</span> <span class="nn">socket</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">retBanner</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>try:
-</span><span class='line'>    socket.setdefaulttimeout(2)
-</span><span class='line'>    s = socket.socket()
-</span><span class='line'>    s.connect((ip, port))
-</span><span class='line'>    banner = s.recv(1024)
-</span><span class='line'>    return banner
-</span><span class='line'>except:
-</span><span class='line'>    return
-</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">try</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">socket</span><span class="o">.</span><span class="n">setdefaulttimeout</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">banner</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">banner</span>
+</span><span class='line'><span class="k">except</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">return</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>def main():&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>iplist = [66]  # IP address of my raspberry pi
-</span><span class='line'>for x in iplist:  # Could be range, instead of list
-</span><span class='line'>    ip = '192.168.11.' + str(x)
-</span><span class='line'>    for port in range(1,35000):  # Defines Port Range
-</span><span class='line'>        banner = retBanner(ip, port)
-</span><span class='line'>        if banner:  # [+] Errorhandling; printing active ports
-</span><span class='line'>            print '[+] ' + ip + ':' + str(port) + ' - ' + banner
-</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">iplist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">66</span><span class="p">]</span>  <span class="c"># IP address of my raspberry pi</span>
+</span><span class='line'><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">iplist</span><span class="p">:</span>  <span class="c"># Could be range, instead of list</span>
+</span><span class='line'>    <span class="n">ip</span> <span class="o">=</span> <span class="s">&#39;192.168.11.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">35000</span><span class="p">):</span>  <span class="c"># Defines Port Range</span>
+</span><span class='line'>        <span class="n">banner</span> <span class="o">=</span> <span class="n">retBanner</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">banner</span><span class="p">:</span>  <span class="c"># [+] Errorhandling; printing active ports</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;[+] &#39;</span> <span class="o">+</span> <span class="n">ip</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">port</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; - &#39;</span> <span class="o">+</span> <span class="n">banner</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p>if &lt;strong>name&lt;/strong> == &lsquo;&lt;strong>main&lt;/strong>&rsquo;:&lt;/p>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">if</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">name</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">main</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;&amp;</span><span class="n">rsquo</span><span class="p">;:</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>main()
-</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Results </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
