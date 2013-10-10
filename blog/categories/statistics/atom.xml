@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Statistics | Learn / Code / Share]]></title>
   <link href="http://pifst.github.io/blog/categories/statistics/atom.xml" rel="self"/>
   <link href="http://pifst.github.io/"/>
-  <updated>2013-10-09T23:53:15-04:00</updated>
+  <updated>2013-10-10T00:02:14-04:00</updated>
   <id>http://pifst.github.io/</id>
   <author>
     <name><![CDATA[Christopher Fields]]></name>
@@ -27,7 +27,7 @@
 
 <h2>Example</h2>
 
-<p>In this example I&rsquo;m going to use the time command to check my character indexing script.</p>
+<p>In this example I&rsquo;m going to use the time command to check my <a href="http://github.com/pifst/Ruby-Character-Indexing">character indexing script</a> <i class="icon-github-alt"></i> (github).</p>
 
 <p>In brief these script&rsquo;s first determine the total unique combinations of a given string of characters, and then returns the where the string input would belong in that alphabetical index.</p>
 
