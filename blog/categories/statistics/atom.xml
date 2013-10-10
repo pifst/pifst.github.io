@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Statistics | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/statistics/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-10-09T23:53:15-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Time: Using it to compare Resource Use]]></title>
+    <link href="http://pifst.github.io/blog/2013/10/09/time-measuring-resource-usage/"/>
+    <updated>2013-10-09T22:25:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/10/09/time-measuring-resource-usage</id>
+    <content type="html"><![CDATA[<p><i class="icon-time"></i>
+<a href="http://man7.org/linux/man-pages/man1/time.1.html">Time</a> &ndash; time a simple command or give resource usage (linux man-pages)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>terminal prompt </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/bin/time -v [program/script]</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Example</h2>
+
+<p>In this example I&rsquo;m going to use the time command to check my character indexing script.</p>
+
+<p>In brief these script&rsquo;s first determine the total unique combinations of a given string of characters, and then returns the where the string input would belong in that alphabetical index.</p>
+
+<p>For this case, I&rsquo;m going to use an alphabetical 10 character string.  Which has a total of 3628800 possible combinations (10!).</p>
+
+<h2>Dictionary Lookup</h2>
+
+<p>The first script solves this problem thru a dictionary lookup.  First the unique combinations are generated into an array, then the script searches the array for the input string, once found the index is returned.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Dictionary Lookup Check </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/bin/time -v ruby ranking_dictionary_lookup.rb ABCDEFGHIJ&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>The input &lsquo;ABCDEFGHIJ&rsquo; is ranked # 1&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>Time elapsed 107858.65 milliseconds, memory used: 1231576KB&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Command being timed: &ldquo;ruby ranking_dictionary_lookup.rb ABCDEFGHIJ&rdquo;
+</span><span class='line'>  User time (seconds): 12.61
+</span><span class='line'>  System time (seconds): 0.70
+</span><span class='line'>  Percent of CPU this job got: 12%
+</span><span class='line'>  Elapsed (wall clock) time (h:mm:ss or m:ss): 1:48.00
+</span><span class='line'>  Average shared text size (kbytes): 0
+</span><span class='line'>  Average unshared data size (kbytes): 0
+</span><span class='line'>  Average stack size (kbytes): 0
+</span><span class='line'>  Average total size (kbytes): 0
+</span><span class='line'>  Maximum resident set size (kbytes): 1237964
+</span><span class='line'>  Average resident set size (kbytes): 0
+</span><span class='line'>  Major (requiring I/O) page faults: 0
+</span><span class='line'>  Minor (reclaiming a frame) page faults: 380986
+</span><span class='line'>  Voluntary context switches: 6345
+</span><span class='line'>  Involuntary context switches: 11620
+</span><span class='line'>  Swaps: 0
+</span><span class='line'>  File system inputs: 0
+</span><span class='line'>  File system outputs: 0
+</span><span class='line'>  Socket messages sent: 0
+</span><span class='line'>  Socket messages received: 0
+</span><span class='line'>  Signals delivered: 0
+</span><span class='line'>  Page size (bytes): 4096
+</span><span class='line'>  Exit status: 0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+In this case, 10! combinations generated a whopping 1.23gb array in memory, taking 1 minute and 48 seconds to complete.</p>
+
+<h2>Algorithm</h2>
+
+<p>For the case of an input string made up of unique characters, the results per character can be determined when the array length is divided by the amount of unique characters (10!/10) = 362880.  Knowing the possibilities per character lets the algorithm set the range.</p>
+
+<p>Multiplying the possibilities per character by the alphabetic disorder of the leading character found by looking up the leading character inside an alphabeted list, and using the index as the integer. In this case, 362880 * 0 = 0.</p>
+
+<p>This concept continues in a recursive loop eliminating the the leading character, repeating as such: (9!/9, 8!/8 etc), while summing the iteratively smaller minimum range.</p>
+
+<p>Once the input string is exhausted, the minimum ranges are summed, and added by 1 to convert back to an ordinal number system.  This is because the first position of a list or an array is always 0, being first is otherwise referred to as 1.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Algorithm Check </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ /usr/bin/time -v ruby ranking.rb ABCDEFGHIJ&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>The input &lsquo;ABCDEFGHIJ&rsquo; is ranked # 1&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>Time elapsed 6.052 milliseconds, memory used: 124KB&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>  Command being timed: &ldquo;ruby ranking.rb ABCDEFGHIJ&rdquo;
+</span><span class='line'>  User time (seconds): 0.01
+</span><span class='line'>  System time (seconds): 0.02
+</span><span class='line'>  Percent of CPU this job got: 95%
+</span><span class='line'>  Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.04
+</span><span class='line'>  Average shared text size (kbytes): 0
+</span><span class='line'>  Average unshared data size (kbytes): 0
+</span><span class='line'>  Average stack size (kbytes): 0
+</span><span class='line'>  Average total size (kbytes): 0
+</span><span class='line'>  Maximum resident set size (kbytes): 6912
+</span><span class='line'>  Average resident set size (kbytes): 0
+</span><span class='line'>  Major (requiring I/O) page faults: 0
+</span><span class='line'>  Minor (reclaiming a frame) page faults: 3845
+</span><span class='line'>  Voluntary context switches: 10
+</span><span class='line'>  Involuntary context switches: 10
+</span><span class='line'>  Swaps: 0
+</span><span class='line'>  File system inputs: 0
+</span><span class='line'>  File system outputs: 0
+</span><span class='line'>  Socket messages sent: 0
+</span><span class='line'>  Socket messages received: 0
+</span><span class='line'>  Signals delivered: 0
+</span><span class='line'>  Page size (bytes): 4096
+</span><span class='line'>  Exit status: 0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+Meanwhile this algorithm really sped things up.  Fourty milliseconds compared to 108 seconds of computation time.  While using 6.9megabytes of memory in comparison to 1,237MB.</p>
+]]></content>
+  </entry>
+  
+</feed>
