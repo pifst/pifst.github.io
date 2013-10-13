@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime, | Learn / Code / Share]]></title>
+  <link href="http://pifst.github.io/blog/categories/sublime/atom.xml" rel="self"/>
+  <link href="http://pifst.github.io/"/>
+  <updated>2013-10-13T17:14:46-04:00</updated>
+  <id>http://pifst.github.io/</id>
+  <author>
+    <name><![CDATA[Christopher Fields]]></name>
+    
+  </author>
+  <generator uri="http://www.csfields.com">Chris Fields</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text Workflow]]></title>
+    <link href="http://pifst.github.io/blog/2013/10/13/sublime-text-workflow/"/>
+    <updated>2013-10-13T16:07:00-04:00</updated>
+    <id>http://pifst.github.io/blog/2013/10/13/sublime-text-workflow</id>
+    <content type="html"><![CDATA[<p><a href="http://www.sublimetext.com/3">Sublime Text</a> is a fully extensible editor, with a full open source community behind it which add an almost unlimited amount of additional features.</p>
+
+<h2>Package Control</h2>
+
+<p>The first thing to do after installing SublimeText (preferably version 3), is adding <a href="https://sublime.wbond.net/installation#st3">package control</a> to the console.  Assuming you downloaded v3, goto View &ndash;> Console, and copy and paste the following into Sublime&rsquo;s console:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Add Package Control to Sublime Text 3 </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import urllib.request,os; pf = &lsquo;Package Control.sublime-package&rsquo;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &lsquo;wb&rsquo;).write(urllib.request.urlopen( &lsquo;&lt;a href="http://sublime.wbond.net/">http://sublime.wbond.net/&lt;/a>&rsquo; + pf.replace(&lsquo; &rsquo;,&lsquo;%20&rsquo;)).read())</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>After installation, restart SublimeText, and interact with package control by opening the Command Pallete (ctrl+shift+p), and begin typing &lsquo;package control&rsquo;.</p>
+
+<p>I&rsquo;ve found it easier to remap the Command Pallete to CMD+`.  You can do the same by overriding the system key bindings by choosing Preferences > Key Bindings &ndash; User,</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{ &ldquo;keys&rdquo;: [&ldquo;super+`&rdquo;], &ldquo;command&rdquo;: &ldquo;show_overlay&rdquo;, &ldquo;args&rdquo;: {&ldquo;overlay&rdquo;: &ldquo;command_palette&rdquo;} },</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>SublimeGit</h2>
+
+<p><a href="https://sublime.wbond.net/packages/SublimeGit"><img src="https://d2777yy07wufz4.cloudfront.net/static/img/screenshots/screenshot-03.png"></a>
+I found SublimeGit less than a week ago on <a href="https://news.ycombinator.com/item?id=6520076">HackerNews</a>, it&rsquo;s a complete replacement for interacting with Git via a terminal.  Instead all Git operations are now available thru SublimeText&rsquo;s terminal, with hot keys to manage the project.</p>
+
+<p>I would certainly recommend reviewing the <a href="https://docs.sublimegit.net/">SublimeGit Documentationn</a> prior to starting.  The only dependencies are that Sublime Text &amp; Git are installed.</p>
+
+<h2>GitGutter</h2>
+
+<p><a href="https://sublime.wbond.net/packages/GitGutter"><img src="http://i.imgur.com/ur6FY.png"></a>
+The one shortcoming of SublimeGit is it&rsquo;s inability to show the internal changes to a file, queue <a href="https://sublime.wbond.net/packages/GitGutter">GitGutter</a>.</p>
+
+<h2>DashDoc</h2>
+
+<p><a href="http://kapeli.com/dash">Dashdoc</a>, is fantastic syntax aware OSX Documentation manager.  With this SublimeText <a href="https://sublime.wbond.net/packages/DashDoc">DashDoc plugin</a>, simply select any built in class/function/method etc and hit &lsquo;Ctrl-H&rsquo;, and DashDoc will instantly bring up the official documentation.  The documentation is downloaded &amp; indexed on your machine, making it much faster than using google or stackoverflow for reviewing something.</p>
+
+<h2>Highlight Whitespaces</h2>
+
+<p>Simply toggles on/off a <a href="https://sublime.wbond.net/packages/Highlight%20Whitespaces">highlighting of whitespace</a>, quick easy way to compare spaces &amp; tabs.</p>
+
+<h2>PlainTasks</h2>
+
+<p><a href="https://sublime.wbond.net/packages/PlainTasks"><img src="http://f.cl.ly/items/2y2m3v1i0S2V1t2m2A0e/Screen%20Shot%202012-04-21%20at%2012.27.05%20AM.png"></a>
+I&rsquo;ve found that <a href="https://sublime.wbond.net/packages/PlainTasks">PlainTasks</a> has been a very efficient way of keeping track of tasks and research in Sublime.  It&rsquo;s very simple (as well as readable in any text editor), colon&rsquo;s create nestable topics, CMD+Enter creates tasks, and CMD+D marks them as done.  There are a few additional features however I like PlainTasks for it&rsquo;s simplicity, as well as its readability for users w/o Plaintasks.</p>
+
+<h2>Themes</h2>
+
+<p>SublimeText&rsquo;s GUI is also completely customizable, this is an individual preference, however I would suggest trying out any of the <a href="https://sublime.wbond.net/search/theme">&lsquo;Top 100&rsquo; themes'</a>.  The most upto date themes provide higher DPI retnia support.  I use the <a href="https://sublime.wbond.net/packages/Theme%20-%20Nil">Nil Theme</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
